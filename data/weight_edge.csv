@@ -1,0 +1,378 @@
+Source,Destination,Poids,Path
+Esplanade de La Défense,La Défense,1578,Esplanade de La Défense - La Défense
+Esplanade de La Défense,Pont de Neuilly,4648,Esplanade de La Défense - Pont de Neuilly
+Pont de Neuilly,Les Sablons,7589,Pont de Neuilly - Les Sablons
+Les Sablons,Porte Maillot,10638,Les Sablons - Porte Maillot
+Porte Maillot,Argentine,13636,Porte Maillot - Argentine
+Argentine,Charles de Gaulle - Étoile,16511,Argentine - Charles de Gaulle - Étoile
+Charles de Gaulle - Étoile,George V,18142,Charles de Gaulle - Étoile - George V
+Charles de Gaulle - Étoile,Victor Hugo,11733,Charles de Gaulle - Étoile - Victor Hugo
+Charles de Gaulle - Étoile,Ternes,13076,Charles de Gaulle - Étoile - Ternes
+Charles de Gaulle - Étoile,Place d'Italie,36709,Charles de Gaulle - Étoile - Place d'Italie
+Charles de Gaulle - Étoile,Kléber,19851,Charles de Gaulle - Étoile - Kléber
+George V,Franklin D. Roosevelt,18042,George V - Franklin D. Roosevelt
+Franklin D. Roosevelt,Champs-Élysées - Clemenceau,26387,Franklin D. Roosevelt - Champs-Élysées - Clemenceau
+Franklin D. Roosevelt,Alma - Marceau,13569,Franklin D. Roosevelt - Alma - Marceau
+Franklin D. Roosevelt,Saint-Philippe du Roule,6206,Franklin D. Roosevelt - Saint-Philippe du Roule
+Champs-Élysées - Clemenceau,Concorde,11191,Champs-Élysées - Clemenceau - Concorde
+Champs-Élysées - Clemenceau,Miromesnil,10502,Champs-Élysées - Clemenceau - Miromesnil
+Champs-Élysées - Clemenceau,Invalides,7740,Champs-Élysées - Clemenceau - Invalides
+Concorde,Tuileries,2796,Concorde - Tuileries
+Concorde,Invalides,34198,Concorde - Invalides
+Concorde,Madeleine,48458,Concorde - Madeleine
+Concorde,Assemblée nationale,8428,Concorde - Assemblée nationale
+Tuileries,Palais-Royal - Musée du Louvre,2069,Tuileries - Palais-Royal - Musée du Louvre
+Palais-Royal - Musée du Louvre,Louvre - Rivoli,2324,Palais-Royal - Musée du Louvre - Louvre - Rivoli
+Palais-Royal - Musée du Louvre,Pyramides,1700,Palais-Royal - Musée du Louvre - Pyramides
+Palais-Royal - Musée du Louvre,Pont-Neuf,617,Palais-Royal - Musée du Louvre - Pont-Neuf
+Louvre - Rivoli,Châtelet,3348,Louvre - Rivoli - Châtelet
+Châtelet,Hôtel de Ville,22189,Châtelet - Hôtel de Ville
+Châtelet,Les Halles,11430,Châtelet - Les Halles
+Châtelet,Cité,30030,Châtelet - Cité
+Châtelet,Pont-Neuf,1001,Châtelet - Pont-Neuf
+Châtelet,Pont Marie,4078,Châtelet - Pont Marie
+Châtelet,Gare d'Austerlitz,31451,Châtelet - Gare d'Austerlitz
+Châtelet,Pyramides,55652,Châtelet - Pyramides
+Châtelet,Gare de Lyon,72713,Châtelet - Gare de Lyon
+Hôtel de Ville,Saint-Paul,1326,Hôtel de Ville - Saint-Paul
+Hôtel de Ville,Rambuteau,19919,Hôtel de Ville - Rambuteau
+Saint-Paul,Bastille,627,Saint-Paul - Bastille
+Bastille,Gare de Lyon,14787,Bastille - Gare de Lyon
+Bastille,Bréguet - Sabin,10313,Bastille - Bréguet - Sabin
+Bastille,Quai de la Rapée,4881,Bastille - Quai de la Rapée
+Bastille,Chemin Vert,4233,Bastille - Chemin Vert
+Bastille,Ledru-Rollin,2067,Bastille - Ledru-Rollin
+Gare de Lyon,Reuilly - Diderot,48431,Gare de Lyon - Reuilly - Diderot
+Gare de Lyon,Bercy,33003,Gare de Lyon - Bercy
+Reuilly - Diderot,Nation,45775,Reuilly - Diderot - Nation
+Reuilly - Diderot,Faidherbe - Chaligny,1774,Reuilly - Diderot - Faidherbe - Chaligny
+Reuilly - Diderot,Montgallet,2205,Reuilly - Diderot - Montgallet
+Nation,Porte de Vincennes,12712,Nation - Porte de Vincennes
+Nation,Avron,24424,Nation - Avron
+Nation,Pont de Levallois - Bécon,10031,Nation - Pont de Levallois - Bécon
+Nation,Picpus,10942,Nation - Picpus
+Nation,La Courneuve - 8 Mai 1945,16846,Nation - La Courneuve - 8 Mai 1945
+Nation,Rue des Boulets,7660,Nation - Rue des Boulets
+Nation,Buzenval,25851,Nation - Buzenval
+Porte de Vincennes,Saint-Mandé,10565,Porte de Vincennes - Saint-Mandé
+Saint-Mandé,Bérault,9014,Saint-Mandé - Bérault
+Bérault,Château de Vincennes,8286,Bérault - Château de Vincennes
+Château de Vincennes,Porte Dauphine,8603,Château de Vincennes - Porte Dauphine
+Porte Dauphine,Victor Hugo,9763,Porte Dauphine - Victor Hugo
+Ternes,Courcelles,11579,Ternes - Courcelles
+Courcelles,Monceau,11101,Courcelles - Monceau
+Monceau,Villiers,11816,Monceau - Villiers
+Villiers,Rome,11041,Villiers - Rome
+Villiers,Malesherbes,8461,Villiers - Malesherbes
+Villiers,Europe,9668,Villiers - Europe
+Rome,Place de Clichy,10360,Rome - Place de Clichy
+Place de Clichy,Blanche,27522,Place de Clichy - Blanche
+Place de Clichy,La Fourche,10577,Place de Clichy - La Fourche
+Place de Clichy,Liège,18676,Place de Clichy - Liège
+Blanche,Pigalle,26194,Blanche - Pigalle
+Pigalle,Anvers,25118,Pigalle - Anvers
+Pigalle,Abbesses,5013,Pigalle - Abbesses
+Pigalle,Saint-Georges,5061,Pigalle - Saint-Georges
+Anvers,Barbès - Rochechouart,24422,Anvers - Barbès - Rochechouart
+Barbès - Rochechouart,La Chapelle,15189,Barbès - Rochechouart - La Chapelle
+Barbès - Rochechouart,Château Rouge,17200,Barbès - Rochechouart - Château Rouge
+Barbès - Rochechouart,Gare du Nord,9318,Barbès - Rochechouart - Gare du Nord
+La Chapelle,Stalingrad,14536,La Chapelle - Stalingrad
+Stalingrad,Jaurès,17662,Stalingrad - Jaurès
+Stalingrad,Gare du Nord,7688,Stalingrad - Gare du Nord
+Stalingrad,Riquet,10811,Stalingrad - Riquet
+Stalingrad,Louis Blanc,4847,Stalingrad - Louis Blanc
+Jaurès,Colonel Fabien,13921,Jaurès - Colonel Fabien
+Jaurès,Laumière,17360,Jaurès - Laumière
+Jaurès,Louis Blanc,4012,Jaurès - Louis Blanc
+Jaurès,Bolivar,7356,Jaurès - Bolivar
+Colonel Fabien,Belleville,14723,Colonel Fabien - Belleville
+Belleville,Couronnes,7007,Belleville - Couronnes
+Belleville,Goncourt,17700,Belleville - Goncourt
+Belleville,Pyrénées,11212,Belleville - Pyrénées
+Couronnes,Ménilmontant,5525,Couronnes - Ménilmontant
+Ménilmontant,Père Lachaise,5336,Ménilmontant - Père Lachaise
+Père Lachaise,Philippe Auguste,20503,Père Lachaise - Philippe Auguste
+Père Lachaise,Rue Saint-Maur,6935,Père Lachaise - Rue Saint-Maur
+Père Lachaise,Gambetta,20495,Père Lachaise - Gambetta
+Philippe Auguste,Alexandre Dumas,21302,Philippe Auguste - Alexandre Dumas
+Alexandre Dumas,Avron,22608,Alexandre Dumas - Avron
+Pont de Levallois - Bécon,Anatole France,7323,Pont de Levallois - Bécon - Anatole France
+Anatole France,Louise Michel,5117,Anatole France - Louise Michel
+Louise Michel,Porte de Champerret,3867,Louise Michel - Porte de Champerret
+Porte de Champerret,Pereire,3875,Porte de Champerret - Pereire
+Pereire,Wagram,4711,Pereire - Wagram
+Wagram,Malesherbes,6231,Wagram - Malesherbes
+Europe,Saint-Lazare,11050,Europe - Saint-Lazare
+Saint-Lazare,Havre - Caumartin,11755,Saint-Lazare - Havre - Caumartin
+Saint-Lazare,Trinité - d'Estienne d'Orves,8584,Saint-Lazare - Trinité - d'Estienne d'Orves
+Saint-Lazare,Madeleine,47607,Saint-Lazare - Madeleine
+Saint-Lazare,Liège,20261,Saint-Lazare - Liège
+Saint-Lazare,Miromesnil,17079,Saint-Lazare - Miromesnil
+Saint-Lazare,Pont Cardinet,43084,Saint-Lazare - Pont Cardinet
+Havre - Caumartin,Opéra,8926,Havre - Caumartin - Opéra
+Havre - Caumartin,Saint-Augustin,1422,Havre - Caumartin - Saint-Augustin
+Havre - Caumartin,Chaussée d'Antin - La Fayette,4761,Havre - Caumartin - Chaussée d'Antin - La Fayette
+Opéra,Quatre-Septembre,5256,Opéra - Quatre-Septembre
+Opéra,Chaussée d'Antin - La Fayette,11101,Opéra - Chaussée d'Antin - La Fayette
+Opéra,Pyramides,10181,Opéra - Pyramides
+Opéra,Madeleine,16477,Opéra - Madeleine
+Opéra,Richelieu - Drouot,13221,Opéra - Richelieu - Drouot
+Quatre-Septembre,Bourse,3365,Quatre-Septembre - Bourse
+Bourse,Sentier,2350,Bourse - Sentier
+Sentier,Réaumur - Sébastopol,2695,Sentier - Réaumur - Sébastopol
+Réaumur - Sébastopol,Arts et Métiers,1632,Réaumur - Sébastopol - Arts et Métiers
+Réaumur - Sébastopol,Strasbourg - Saint-Denis,8191,Réaumur - Sébastopol - Strasbourg - Saint-Denis
+Réaumur - Sébastopol,Étienne Marcel,8686,Réaumur - Sébastopol - Étienne Marcel
+Arts et Métiers,Temple,995,Arts et Métiers - Temple
+Arts et Métiers,Rambuteau,18619,Arts et Métiers - Rambuteau
+Arts et Métiers,République,17289,Arts et Métiers - République
+Temple,République,494,Temple - République
+République,Parmentier,9427,République - Parmentier
+République,Jacques Bonsergent,11884,République - Jacques Bonsergent
+République,Oberkampf,14047,République - Oberkampf
+République,Strasbourg - Saint-Denis,9750,République - Strasbourg - Saint-Denis
+République,Filles du Calvaire,2680,République - Filles du Calvaire
+République,Goncourt,19088,République - Goncourt
+Parmentier,Rue Saint-Maur,7620,Parmentier - Rue Saint-Maur
+Gambetta,Porte de Bagnolet,1495,Gambetta - Porte de Bagnolet
+Gambetta,Gallieni,1541,Gambetta - Gallieni
+Gambetta,Pelleport,15619,Gambetta - Pelleport
+Porte de Bagnolet,Gallieni,0,Porte de Bagnolet - Gallieni
+Pelleport,Porte des Lilas,14754,Pelleport - Porte des Lilas
+Porte des Lilas,Porte de Clignancourt,8935,Porte des Lilas - Porte de Clignancourt
+Porte des Lilas,Télégraphe,12073,Porte des Lilas - Télégraphe
+Porte des Lilas,Mairie des Lilas,8689,Porte des Lilas - Mairie des Lilas
+Porte de Clignancourt,Simplon,8188,Porte de Clignancourt - Simplon
+Simplon,Marcadet - Poissonniers,8533,Simplon - Marcadet - Poissonniers
+Marcadet - Poissonniers,Château Rouge,15470,Marcadet - Poissonniers - Château Rouge
+Marcadet - Poissonniers,Marx Dormoy,6249,Marcadet - Poissonniers - Marx Dormoy
+Marcadet - Poissonniers,Jules Joffrin,1991,Marcadet - Poissonniers - Jules Joffrin
+Gare du Nord,Gare de l'Est,17987,Gare du Nord - Gare de l'Est
+Gare de l'Est,Château d'Eau,7442,Gare de l'Est - Château d'Eau
+Gare de l'Est,Jacques Bonsergent,11521,Gare de l'Est - Jacques Bonsergent
+Gare de l'Est,Château-Landon,7651,Gare de l'Est - Château-Landon
+Gare de l'Est,Poissonnière,11382,Gare de l'Est - Poissonnière
+Château d'Eau,Strasbourg - Saint-Denis,8199,Château d'Eau - Strasbourg - Saint-Denis
+Strasbourg - Saint-Denis,Bonne-Nouvelle,10702,Strasbourg - Saint-Denis - Bonne-Nouvelle
+Étienne Marcel,Les Halles,9663,Étienne Marcel - Les Halles
+Cité,Saint-Michel,27849,Cité - Saint-Michel
+Saint-Michel,Odéon,26085,Saint-Michel - Odéon
+Odéon,Saint-Germain-des-Prés,16711,Odéon - Saint-Germain-des-Prés
+Odéon,Mabillon,7819,Odéon - Mabillon
+Odéon,Cluny - La Sorbonne,3220,Odéon - Cluny - La Sorbonne
+Saint-Germain-des-Prés,Saint-Sulpice,15205,Saint-Germain-des-Prés - Saint-Sulpice
+Saint-Sulpice,Saint-Placide,14655,Saint-Sulpice - Saint-Placide
+Saint-Placide,Montparnasse - Bienvenüe,14836,Saint-Placide - Montparnasse - Bienvenüe
+Montparnasse - Bienvenüe,Vavin,17205,Montparnasse - Bienvenüe - Vavin
+Montparnasse - Bienvenüe,Pasteur,11434,Montparnasse - Bienvenüe - Pasteur
+Montparnasse - Bienvenüe,Edgar Quinet,1210,Montparnasse - Bienvenüe - Edgar Quinet
+Montparnasse - Bienvenüe,Notre-Dame-des-Champs,1377,Montparnasse - Bienvenüe - Notre-Dame-des-Champs
+Montparnasse - Bienvenüe,Falguière,1331,Montparnasse - Bienvenüe - Falguière
+Montparnasse - Bienvenüe,Duroc,24169,Montparnasse - Bienvenüe - Duroc
+Montparnasse - Bienvenüe,Gaîté,12696,Montparnasse - Bienvenüe - Gaîté
+Vavin,Raspail,15305,Vavin - Raspail
+Raspail,Denfert-Rochereau,14933,Raspail - Denfert-Rochereau
+Raspail,Edgar Quinet,270,Raspail - Edgar Quinet
+Denfert-Rochereau,Mouton-Duvernet,17887,Denfert-Rochereau - Mouton-Duvernet
+Denfert-Rochereau,Saint-Jacques,16753,Denfert-Rochereau - Saint-Jacques
+Mouton-Duvernet,Alésia,15328,Mouton-Duvernet - Alésia
+Alésia,Porte d'Orléans,13050,Alésia - Porte d'Orléans
+Porte d'Orléans,Mairie de Montrouge,11234,Porte d'Orléans - Mairie de Montrouge
+Mairie de Montrouge,Barbara,9703,Mairie de Montrouge - Barbara
+Barbara,Bagneux - Lucie Aubrac,8481,Barbara - Bagneux - Lucie Aubrac
+Bagneux - Lucie Aubrac,Bobigny - Pablo Picasso,7579,Bagneux - Lucie Aubrac - Bobigny - Pablo Picasso
+Bobigny - Pablo Picasso,Bobigny - Pantin - Raymond Queneau,7391,Bobigny - Pablo Picasso - Bobigny - Pantin - Raymond Queneau
+Bobigny - Pantin - Raymond Queneau,Église de Pantin,7675,Bobigny - Pantin - Raymond Queneau - Église de Pantin
+Église de Pantin,Hoche,8737,Église de Pantin - Hoche
+Hoche,Porte de Pantin,10292,Hoche - Porte de Pantin
+Porte de Pantin,Ourcq,12448,Porte de Pantin - Ourcq
+Ourcq,Laumière,14800,Ourcq - Laumière
+Oberkampf,Richard-Lenoir,8315,Oberkampf - Richard-Lenoir
+Oberkampf,Saint-Ambroise,5584,Oberkampf - Saint-Ambroise
+Richard-Lenoir,Bréguet - Sabin,8804,Richard-Lenoir - Bréguet - Sabin
+Quai de la Rapée,Gare d'Austerlitz,5291,Quai de la Rapée - Gare d'Austerlitz
+Gare d'Austerlitz,Saint-Marcel,24467,Gare d'Austerlitz - Saint-Marcel
+Gare d'Austerlitz,Jussieu,10434,Gare d'Austerlitz - Jussieu
+Saint-Marcel,Campo-Formio,23141,Saint-Marcel - Campo-Formio
+Campo-Formio,Place d'Italie,22954,Campo-Formio - Place d'Italie
+Place d'Italie,Corvisart,21762,Place d'Italie - Corvisart
+Place d'Italie,Nationale,11202,Place d'Italie - Nationale
+Place d'Italie,Les Gobelins,3974,Place d'Italie - Les Gobelins
+Place d'Italie,Tolbiac,17955,Place d'Italie - Tolbiac
+Kléber,Boissière,17835,Kléber - Boissière
+Boissière,Trocadéro,16527,Boissière - Trocadéro
+Trocadéro,Passy,7849,Trocadéro - Passy
+Trocadéro,Rue de la Pompe,21787,Trocadéro - Rue de la Pompe
+Trocadéro,Iéna,11631,Trocadéro - Iéna
+Passy,Bir-Hakeim,6813,Passy - Bir-Hakeim
+Bir-Hakeim,Dupleix,7130,Bir-Hakeim - Dupleix
+Dupleix,La Motte-Picquet - Grenelle,8892,Dupleix - La Motte-Picquet - Grenelle
+La Motte-Picquet - Grenelle,Cambronne,8464,La Motte-Picquet - Grenelle - Cambronne
+La Motte-Picquet - Grenelle,Commerce,24117,La Motte-Picquet - Grenelle - Commerce
+La Motte-Picquet - Grenelle,École Militaire,22104,La Motte-Picquet - Grenelle - École Militaire
+La Motte-Picquet - Grenelle,Avenue Émile-Zola,20880,La Motte-Picquet - Grenelle - Avenue Émile-Zola
+La Motte-Picquet - Grenelle,Ségur,17149,La Motte-Picquet - Grenelle - Ségur
+Cambronne,Sèvres - Lecourbe,6333,Cambronne - Sèvres - Lecourbe
+Sèvres - Lecourbe,Pasteur,5577,Sèvres - Lecourbe - Pasteur
+Pasteur,Falguière,121,Pasteur - Falguière
+Pasteur,Volontaires,12432,Pasteur - Volontaires
+Saint-Jacques,Glacière,17979,Saint-Jacques - Glacière
+Glacière,Corvisart,19637,Glacière - Corvisart
+Nationale,Chevaleret,10126,Nationale - Chevaleret
+Chevaleret,Quai de la Gare,10437,Chevaleret - Quai de la Gare
+Quai de la Gare,Bercy,11886,Quai de la Gare - Bercy
+Bercy,Dugommier,26689,Bercy - Dugommier
+Bercy,Cour Saint-Émilion,7527,Bercy - Cour Saint-Émilion
+Dugommier,Daumesnil,24440,Dugommier - Daumesnil
+Daumesnil,Bel-Air,9613,Daumesnil - Bel-Air
+Daumesnil,Montgallet,922,Daumesnil - Montgallet
+Daumesnil,Michel Bizot,29115,Daumesnil - Michel Bizot
+Bel-Air,Picpus,9338,Bel-Air - Picpus
+La Courneuve - 8 Mai 1945,Fort d'Aubervilliers,14468,La Courneuve - 8 Mai 1945 - Fort d'Aubervilliers
+Fort d'Aubervilliers,Aubervilliers - Pantin - Quatre Chemins,12309,Fort d'Aubervilliers - Aubervilliers - Pantin - Quatre Chemins
+Aubervilliers - Pantin - Quatre Chemins,Porte de la Villette,10512,Aubervilliers - Pantin - Quatre Chemins - Porte de la Villette
+Porte de la Villette,Corentin Cariou,9324,Porte de la Villette - Corentin Cariou
+Corentin Cariou,Crimée,8869,Corentin Cariou - Crimée
+Crimée,Riquet,9328,Crimée - Riquet
+Louis Blanc,Château-Landon,5979,Louis Blanc - Château-Landon
+Louis Blanc,Mairie d'Ivry,11680,Louis Blanc - Mairie d'Ivry
+Poissonnière,Cadet,11614,Poissonnière - Cadet
+Cadet,Le Peletier,12665,Cadet - Le Peletier
+Le Peletier,Chaussée d'Antin - La Fayette,14175,Le Peletier - Chaussée d'Antin - La Fayette
+Chaussée d'Antin - La Fayette,Richelieu - Drouot,160,Chaussée d'Antin - La Fayette - Richelieu - Drouot
+Pyramides,Madeleine,47130,Pyramides - Madeleine
+Pont Marie,Sully - Morland,1369,Pont Marie - Sully - Morland
+Sully - Morland,Jussieu,337,Sully - Morland - Jussieu
+Jussieu,Place Monge,4861,Jussieu - Place Monge
+Jussieu,Cardinal Lemoine,4449,Jussieu - Cardinal Lemoine
+Place Monge,Censier - Daubenton,3408,Place Monge - Censier - Daubenton
+Censier - Daubenton,Les Gobelins,2961,Censier - Daubenton - Les Gobelins
+Tolbiac,Maison Blanche,15332,Tolbiac - Maison Blanche
+Maison Blanche,Le Kremlin-Bicêtre,12918,Maison Blanche - Le Kremlin-Bicêtre
+Le Kremlin-Bicêtre,Villejuif - Léo Lagrange,10805,Le Kremlin-Bicêtre - Villejuif - Léo Lagrange
+Villejuif - Léo Lagrange,Villejuif - Paul Vaillant-Couturier,9048,Villejuif - Léo Lagrange - Villejuif - Paul Vaillant-Couturier
+Villejuif - Paul Vaillant-Couturier,Villejuif - Louis Aragon,7565,Villejuif - Paul Vaillant-Couturier - Villejuif - Louis Aragon
+Villejuif - Louis Aragon,Porte d'Italie,6496,Villejuif - Louis Aragon - Porte d'Italie
+Porte d'Italie,Porte de Choisy,6140,Porte d'Italie - Porte de Choisy
+Porte de Choisy,Porte d'Ivry,6468,Porte de Choisy - Porte d'Ivry
+Porte d'Ivry,Pierre et Marie Curie,7589,Porte d'Ivry - Pierre et Marie Curie
+Pierre et Marie Curie,Mairie d'Ivry,9404,Pierre et Marie Curie - Mairie d'Ivry
+Bolivar,Buttes Chaumont,5303,Bolivar - Buttes Chaumont
+Buttes Chaumont,Botzaris,3995,Buttes Chaumont - Botzaris
+Botzaris,Danube,3787,Botzaris - Danube
+Danube,Place des Fêtes,5086,Danube - Place des Fêtes
+Place des Fêtes,Pré-Saint-Gervais,19694,Place des Fêtes - Pré-Saint-Gervais
+Place des Fêtes,Jourdain,8717,Place des Fêtes - Jourdain
+Place des Fêtes,Télégraphe,12452,Place des Fêtes - Télégraphe
+Pré-Saint-Gervais,Balard,18981,Pré-Saint-Gervais - Balard
+Balard,Lourmel,19060,Balard - Lourmel
+Lourmel,Boucicaut,19715,Lourmel - Boucicaut
+Boucicaut,Félix Faure,20777,Boucicaut - Félix Faure
+Félix Faure,Commerce,22272,Félix Faure - Commerce
+École Militaire,La Tour-Maubourg,22823,École Militaire - La Tour-Maubourg
+La Tour-Maubourg,Invalides,24214,La Tour-Maubourg - Invalides
+Invalides,Varenne,15495,Invalides - Varenne
+Richelieu - Drouot,Grands Boulevards,11921,Richelieu - Drouot - Grands Boulevards
+Grands Boulevards,Bonne-Nouvelle,10728,Grands Boulevards - Bonne-Nouvelle
+Filles du Calvaire,Saint-Sébastien - Froissart,1771,Filles du Calvaire - Saint-Sébastien - Froissart
+Saint-Sébastien - Froissart,Chemin Vert,2524,Saint-Sébastien - Froissart - Chemin Vert
+Ledru-Rollin,Faidherbe - Chaligny,826,Ledru-Rollin - Faidherbe - Chaligny
+Michel Bizot,Porte Dorée,26298,Michel Bizot - Porte Dorée
+Porte Dorée,Porte de Charenton,23553,Porte Dorée - Porte de Charenton
+Porte de Charenton,Liberté,20811,Porte de Charenton - Liberté
+Liberté,Charenton - Écoles,18243,Liberté - Charenton - Écoles
+Charenton - Écoles,École vétérinaire de Maisons-Alfort,15703,Charenton - Écoles - École vétérinaire de Maisons-Alfort
+École vétérinaire de Maisons-Alfort,Maisons-Alfort - Stade,13156,École vétérinaire de Maisons-Alfort - Maisons-Alfort - Stade
+Maisons-Alfort - Stade,Maisons-Alfort - Les Juilliottes,10725,Maisons-Alfort - Stade - Maisons-Alfort - Les Juilliottes
+Maisons-Alfort - Les Juilliottes,Créteil - L'Échat,8494,Maisons-Alfort - Les Juilliottes - Créteil - L'Échat
+Créteil - L'Échat,Créteil - Université,6513,Créteil - L'Échat - Créteil - Université
+Créteil - Université,Créteil - Préfecture,4978,Créteil - Université - Créteil - Préfecture
+Créteil - Préfecture,Pointe du Lac,4171,Créteil - Préfecture - Pointe du Lac
+Pointe du Lac,Pont de Sèvres,4589,Pointe du Lac - Pont de Sèvres
+Pont de Sèvres,Billancourt,6188,Pont de Sèvres - Billancourt
+Billancourt,Marcel Sembat,8669,Billancourt - Marcel Sembat
+Marcel Sembat,Porte de Saint-Cloud,11382,Marcel Sembat - Porte de Saint-Cloud
+Porte de Saint-Cloud,Exelmans,14208,Porte de Saint-Cloud - Exelmans
+Exelmans,Michel-Ange - Molitor,16975,Exelmans - Michel-Ange - Molitor
+Michel-Ange - Molitor,Michel-Ange - Auteuil,20646,Michel-Ange - Molitor - Michel-Ange - Auteuil
+Michel-Ange - Molitor,Porte d'Auteuil,10774,Michel-Ange - Molitor - Porte d'Auteuil
+Michel-Ange - Auteuil,Jasmin,14228,Michel-Ange - Auteuil - Jasmin
+Michel-Ange - Auteuil,Chardon-Lagache,11202,Michel-Ange - Auteuil - Chardon-Lagache
+Jasmin,Ranelagh,15094,Jasmin - Ranelagh
+Ranelagh,La Muette,16996,Ranelagh - La Muette
+La Muette,Rue de la Pompe,19328,La Muette - Rue de la Pompe
+Iéna,Alma - Marceau,11847,Iéna - Alma - Marceau
+Saint-Philippe du Roule,Miromesnil,6343,Saint-Philippe du Roule - Miromesnil
+Miromesnil,Saint-Augustin,1452,Miromesnil - Saint-Augustin
+Saint-Ambroise,Voltaire,4222,Saint-Ambroise - Voltaire
+Voltaire,Charonne,4357,Voltaire - Charonne
+Charonne,Rue des Boulets,5641,Charonne - Rue des Boulets
+Buzenval,Maraîchers,23361,Buzenval - Maraîchers
+Maraîchers,Porte de Montreuil,20746,Maraîchers - Porte de Montreuil
+Porte de Montreuil,Robespierre,18195,Porte de Montreuil - Robespierre
+Robespierre,Croix de Chavaux,15876,Robespierre - Croix de Chavaux
+Croix de Chavaux,Mairie de Montreuil,13820,Croix de Chavaux - Mairie de Montreuil
+Mairie de Montreuil,Boulogne - Pont de Saint-Cloud,12092,Mairie de Montreuil - Boulogne - Pont de Saint-Cloud
+Boulogne - Pont de Saint-Cloud,Boulogne - Jean Jaurès,10973,Boulogne - Pont de Saint-Cloud - Boulogne - Jean Jaurès
+Boulogne - Jean Jaurès,Porte d'Auteuil,10507,Boulogne - Jean Jaurès - Porte d'Auteuil
+Chardon-Lagache,Église d'Auteuil,11074,Chardon-Lagache - Église d'Auteuil
+Église d'Auteuil,Mirabeau,11884,Église d'Auteuil - Mirabeau
+Mirabeau,Javel - André Citroën,13643,Mirabeau - Javel - André Citroën
+Javel - André Citroën,Charles Michels,15837,Javel - André Citroën - Charles Michels
+Charles Michels,Avenue Émile-Zola,18420,Charles Michels - Avenue Émile-Zola
+Ségur,Duroc,16044,Ségur - Duroc
+Duroc,Vaneau,5865,Duroc - Vaneau
+Duroc,Saint-François-Xavier,12735,Duroc - Saint-François-Xavier
+Vaneau,Sèvres - Babylone,5419,Vaneau - Sèvres - Babylone
+Sèvres - Babylone,Mabillon,7378,Sèvres - Babylone - Mabillon
+Sèvres - Babylone,Rue du Bac,3416,Sèvres - Babylone - Rue du Bac
+Sèvres - Babylone,Rennes,2910,Sèvres - Babylone - Rennes
+Cluny - La Sorbonne,Maubert - Mutualité,1662,Cluny - La Sorbonne - Maubert - Mutualité
+Maubert - Mutualité,Cardinal Lemoine,2463,Maubert - Mutualité - Cardinal Lemoine
+Pyrénées,Jourdain,9577,Pyrénées - Jourdain
+Mairie des Lilas,Mairie d'Aubervilliers,5713,Mairie des Lilas - Mairie d'Aubervilliers
+Mairie d'Aubervilliers,Aimé Césaire,3324,Mairie d'Aubervilliers - Aimé Césaire
+Aimé Césaire,Front Populaire,2223,Aimé Césaire - Front Populaire
+Front Populaire,Porte de la Chapelle,2440,Front Populaire - Porte de la Chapelle
+Porte de la Chapelle,Marx Dormoy,3746,Porte de la Chapelle - Marx Dormoy
+Jules Joffrin,Lamarck - Caulaincourt,1725,Jules Joffrin - Lamarck - Caulaincourt
+Lamarck - Caulaincourt,Abbesses,2859,Lamarck - Caulaincourt - Abbesses
+Saint-Georges,Notre-Dame-de-Lorette,5201,Saint-Georges - Notre-Dame-de-Lorette
+Notre-Dame-de-Lorette,Trinité - d'Estienne d'Orves,6607,Notre-Dame-de-Lorette - Trinité - d'Estienne d'Orves
+Assemblée nationale,Solférino,5661,Assemblée nationale - Solférino
+Solférino,Rue du Bac,3725,Solférino - Rue du Bac
+Rennes,Notre-Dame-des-Champs,1179,Rennes - Notre-Dame-des-Champs
+Volontaires,Vaugirard,9634,Volontaires - Vaugirard
+Vaugirard,Convention,7021,Vaugirard - Convention
+Convention,Porte de Versailles,4896,Convention - Porte de Versailles
+Porte de Versailles,Corentin Celton,3797,Porte de Versailles - Corentin Celton
+Corentin Celton,Mairie d'Issy,4070,Corentin Celton - Mairie d'Issy
+Mairie d'Issy,Les Courtilles,5409,Mairie d'Issy - Les Courtilles
+Les Courtilles,Les Agnettes,7159,Les Courtilles - Les Agnettes
+Les Agnettes,Gabriel Péri,9173,Les Agnettes - Gabriel Péri
+Gabriel Péri,Mairie de Clichy,11721,Gabriel Péri - Mairie de Clichy
+Mairie de Clichy,Porte de Clichy,14525,Mairie de Clichy - Porte de Clichy
+Porte de Clichy,Brochant,9657,Porte de Clichy - Brochant
+Porte de Clichy,Saint-Ouen,13619,Porte de Clichy - Saint-Ouen
+Porte de Clichy,Pont Cardinet,40599,Porte de Clichy - Pont Cardinet
+Brochant,Saint-Denis - Université,6596,Brochant - Saint-Denis - Université
+Saint-Denis - Université,Basilique de Saint-Denis,3735,Saint-Denis - Université - Basilique de Saint-Denis
+Basilique de Saint-Denis,Saint-Denis - Porte de Paris,1348,Basilique de Saint-Denis - Saint-Denis - Porte de Paris
+Saint-Denis - Porte de Paris,Carrefour Pleyel,757,Saint-Denis - Porte de Paris - Carrefour Pleyel
+Carrefour Pleyel,Mairie de Saint-Ouen,2690,Carrefour Pleyel - Mairie de Saint-Ouen
+Mairie de Saint-Ouen,Garibaldi,4728,Mairie de Saint-Ouen - Garibaldi
+Mairie de Saint-Ouen,Châtillon - Montrouge,8423,Mairie de Saint-Ouen - Châtillon - Montrouge
+Mairie de Saint-Ouen,Saint-Ouen,11421,Mairie de Saint-Ouen - Saint-Ouen
+Garibaldi,Porte de Saint-Ouen,3983,Garibaldi - Porte de Saint-Ouen
+Porte de Saint-Ouen,Guy Môquet,5319,Porte de Saint-Ouen - Guy Môquet
+Guy Môquet,La Fourche,7901,Guy Môquet - La Fourche
+Varenne,Saint-François-Xavier,13630,Varenne - Saint-François-Xavier
+Gaîté,Pernety,10025,Gaîté - Pernety
+Pernety,Plaisance,7565,Pernety - Plaisance
+Plaisance,Porte de Vanves,5666,Plaisance - Porte de Vanves
+Porte de Vanves,Malakoff - Plateau de Vanves,4582,Porte de Vanves - Malakoff - Plateau de Vanves
+Malakoff - Plateau de Vanves,Malakoff - Rue Étienne-Dolet,5002,Malakoff - Plateau de Vanves - Malakoff - Rue Étienne-Dolet
+Malakoff - Rue Étienne-Dolet,Châtillon - Montrouge,6367,Malakoff - Rue Étienne-Dolet - Châtillon - Montrouge
+Cour Saint-Émilion,Bibliothèque François-Mitterrand,4554,Cour Saint-Émilion - Bibliothèque François-Mitterrand
+Bibliothèque François-Mitterrand,Olympiades,1451,Bibliothèque François-Mitterrand - Olympiades

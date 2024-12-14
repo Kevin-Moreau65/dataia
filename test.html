@@ -1,0 +1,1077 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+                <link href="lib/tom-select/tom-select.css" rel="stylesheet">
+                <script src="lib/tom-select/tom-select.complete.min.js"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 600px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+                <div id="select-menu" class="card-header">
+                    <div class="row no-gutters">
+                        <div class="col-10 pb-2">
+                            <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="selectNode([value]);"
+                            id="select-node"
+                            placeholder="Select node..."
+                            >
+                                <option selected>Select a Node by ID</option>
+                                
+                                    <option value="Esplanade de La Défense">Esplanade de La Défense</option>
+                                
+                                    <option value="La Défense">La Défense</option>
+                                
+                                    <option value="Pont de Neuilly">Pont de Neuilly</option>
+                                
+                                    <option value="Les Sablons">Les Sablons</option>
+                                
+                                    <option value="Porte Maillot">Porte Maillot</option>
+                                
+                                    <option value="Argentine">Argentine</option>
+                                
+                                    <option value="Charles de Gaulle - Étoile">Charles de Gaulle - Étoile</option>
+                                
+                                    <option value="George V">George V</option>
+                                
+                                    <option value="Victor Hugo">Victor Hugo</option>
+                                
+                                    <option value="Ternes">Ternes</option>
+                                
+                                    <option value="Place d'Italie">Place d'Italie</option>
+                                
+                                    <option value="Kléber">Kléber</option>
+                                
+                                    <option value="Franklin D. Roosevelt">Franklin D. Roosevelt</option>
+                                
+                                    <option value="Champs-Élysées - Clemenceau">Champs-Élysées - Clemenceau</option>
+                                
+                                    <option value="Alma - Marceau">Alma - Marceau</option>
+                                
+                                    <option value="Saint-Philippe du Roule">Saint-Philippe du Roule</option>
+                                
+                                    <option value="Concorde">Concorde</option>
+                                
+                                    <option value="Miromesnil">Miromesnil</option>
+                                
+                                    <option value="Invalides">Invalides</option>
+                                
+                                    <option value="Tuileries">Tuileries</option>
+                                
+                                    <option value="Madeleine">Madeleine</option>
+                                
+                                    <option value="Assemblée nationale">Assemblée nationale</option>
+                                
+                                    <option value="Palais-Royal - Musée du Louvre">Palais-Royal - Musée du Louvre</option>
+                                
+                                    <option value="Louvre - Rivoli">Louvre - Rivoli</option>
+                                
+                                    <option value="Pyramides">Pyramides</option>
+                                
+                                    <option value="Pont-Neuf">Pont-Neuf</option>
+                                
+                                    <option value="Châtelet">Châtelet</option>
+                                
+                                    <option value="Hôtel de Ville">Hôtel de Ville</option>
+                                
+                                    <option value="Les Halles">Les Halles</option>
+                                
+                                    <option value="Cité">Cité</option>
+                                
+                                    <option value="Pont Marie">Pont Marie</option>
+                                
+                                    <option value="Gare d'Austerlitz">Gare d'Austerlitz</option>
+                                
+                                    <option value="Gare de Lyon">Gare de Lyon</option>
+                                
+                                    <option value="Saint-Paul">Saint-Paul</option>
+                                
+                                    <option value="Rambuteau">Rambuteau</option>
+                                
+                                    <option value="Bastille">Bastille</option>
+                                
+                                    <option value="Bréguet - Sabin">Bréguet - Sabin</option>
+                                
+                                    <option value="Quai de la Rapée">Quai de la Rapée</option>
+                                
+                                    <option value="Chemin Vert">Chemin Vert</option>
+                                
+                                    <option value="Ledru-Rollin">Ledru-Rollin</option>
+                                
+                                    <option value="Reuilly - Diderot">Reuilly - Diderot</option>
+                                
+                                    <option value="Bercy">Bercy</option>
+                                
+                                    <option value="Nation">Nation</option>
+                                
+                                    <option value="Faidherbe - Chaligny">Faidherbe - Chaligny</option>
+                                
+                                    <option value="Montgallet">Montgallet</option>
+                                
+                                    <option value="Porte de Vincennes">Porte de Vincennes</option>
+                                
+                                    <option value="Avron">Avron</option>
+                                
+                                    <option value="Pont de Levallois - Bécon">Pont de Levallois - Bécon</option>
+                                
+                                    <option value="Picpus">Picpus</option>
+                                
+                                    <option value="La Courneuve - 8 Mai 1945">La Courneuve - 8 Mai 1945</option>
+                                
+                                    <option value="Rue des Boulets">Rue des Boulets</option>
+                                
+                                    <option value="Buzenval">Buzenval</option>
+                                
+                                    <option value="Saint-Mandé">Saint-Mandé</option>
+                                
+                                    <option value="Bérault">Bérault</option>
+                                
+                                    <option value="Château de Vincennes">Château de Vincennes</option>
+                                
+                                    <option value="Porte Dauphine">Porte Dauphine</option>
+                                
+                                    <option value="Courcelles">Courcelles</option>
+                                
+                                    <option value="Monceau">Monceau</option>
+                                
+                                    <option value="Villiers">Villiers</option>
+                                
+                                    <option value="Rome">Rome</option>
+                                
+                                    <option value="Malesherbes">Malesherbes</option>
+                                
+                                    <option value="Europe">Europe</option>
+                                
+                                    <option value="Place de Clichy">Place de Clichy</option>
+                                
+                                    <option value="Blanche">Blanche</option>
+                                
+                                    <option value="La Fourche">La Fourche</option>
+                                
+                                    <option value="Liège">Liège</option>
+                                
+                                    <option value="Pigalle">Pigalle</option>
+                                
+                                    <option value="Anvers">Anvers</option>
+                                
+                                    <option value="Abbesses">Abbesses</option>
+                                
+                                    <option value="Saint-Georges">Saint-Georges</option>
+                                
+                                    <option value="Barbès - Rochechouart">Barbès - Rochechouart</option>
+                                
+                                    <option value="La Chapelle">La Chapelle</option>
+                                
+                                    <option value="Château Rouge">Château Rouge</option>
+                                
+                                    <option value="Gare du Nord">Gare du Nord</option>
+                                
+                                    <option value="Stalingrad">Stalingrad</option>
+                                
+                                    <option value="Jaurès">Jaurès</option>
+                                
+                                    <option value="Riquet">Riquet</option>
+                                
+                                    <option value="Louis Blanc">Louis Blanc</option>
+                                
+                                    <option value="Colonel Fabien">Colonel Fabien</option>
+                                
+                                    <option value="Laumière">Laumière</option>
+                                
+                                    <option value="Bolivar">Bolivar</option>
+                                
+                                    <option value="Belleville">Belleville</option>
+                                
+                                    <option value="Couronnes">Couronnes</option>
+                                
+                                    <option value="Goncourt">Goncourt</option>
+                                
+                                    <option value="Pyrénées">Pyrénées</option>
+                                
+                                    <option value="Ménilmontant">Ménilmontant</option>
+                                
+                                    <option value="Père Lachaise">Père Lachaise</option>
+                                
+                                    <option value="Philippe Auguste">Philippe Auguste</option>
+                                
+                                    <option value="Rue Saint-Maur">Rue Saint-Maur</option>
+                                
+                                    <option value="Gambetta">Gambetta</option>
+                                
+                                    <option value="Alexandre Dumas">Alexandre Dumas</option>
+                                
+                                    <option value="Anatole France">Anatole France</option>
+                                
+                                    <option value="Louise Michel">Louise Michel</option>
+                                
+                                    <option value="Porte de Champerret">Porte de Champerret</option>
+                                
+                                    <option value="Pereire">Pereire</option>
+                                
+                                    <option value="Wagram">Wagram</option>
+                                
+                                    <option value="Saint-Lazare">Saint-Lazare</option>
+                                
+                                    <option value="Havre - Caumartin">Havre - Caumartin</option>
+                                
+                                    <option value="Trinité - d'Estienne d'Orves">Trinité - d'Estienne d'Orves</option>
+                                
+                                    <option value="Pont Cardinet">Pont Cardinet</option>
+                                
+                                    <option value="Opéra">Opéra</option>
+                                
+                                    <option value="Saint-Augustin">Saint-Augustin</option>
+                                
+                                    <option value="Chaussée d'Antin - La Fayette">Chaussée d'Antin - La Fayette</option>
+                                
+                                    <option value="Quatre-Septembre">Quatre-Septembre</option>
+                                
+                                    <option value="Richelieu - Drouot">Richelieu - Drouot</option>
+                                
+                                    <option value="Bourse">Bourse</option>
+                                
+                                    <option value="Sentier">Sentier</option>
+                                
+                                    <option value="Réaumur - Sébastopol">Réaumur - Sébastopol</option>
+                                
+                                    <option value="Arts et Métiers">Arts et Métiers</option>
+                                
+                                    <option value="Strasbourg - Saint-Denis">Strasbourg - Saint-Denis</option>
+                                
+                                    <option value="Étienne Marcel">Étienne Marcel</option>
+                                
+                                    <option value="Temple">Temple</option>
+                                
+                                    <option value="République">République</option>
+                                
+                                    <option value="Parmentier">Parmentier</option>
+                                
+                                    <option value="Jacques Bonsergent">Jacques Bonsergent</option>
+                                
+                                    <option value="Oberkampf">Oberkampf</option>
+                                
+                                    <option value="Filles du Calvaire">Filles du Calvaire</option>
+                                
+                                    <option value="Porte de Bagnolet">Porte de Bagnolet</option>
+                                
+                                    <option value="Gallieni">Gallieni</option>
+                                
+                                    <option value="Pelleport">Pelleport</option>
+                                
+                                    <option value="Porte des Lilas">Porte des Lilas</option>
+                                
+                                    <option value="Porte de Clignancourt">Porte de Clignancourt</option>
+                                
+                                    <option value="Télégraphe">Télégraphe</option>
+                                
+                                    <option value="Mairie des Lilas">Mairie des Lilas</option>
+                                
+                                    <option value="Simplon">Simplon</option>
+                                
+                                    <option value="Marcadet - Poissonniers">Marcadet - Poissonniers</option>
+                                
+                                    <option value="Marx Dormoy">Marx Dormoy</option>
+                                
+                                    <option value="Jules Joffrin">Jules Joffrin</option>
+                                
+                                    <option value="Gare de l'Est">Gare de l'Est</option>
+                                
+                                    <option value="Château d'Eau">Château d'Eau</option>
+                                
+                                    <option value="Château-Landon">Château-Landon</option>
+                                
+                                    <option value="Poissonnière">Poissonnière</option>
+                                
+                                    <option value="Bonne-Nouvelle">Bonne-Nouvelle</option>
+                                
+                                    <option value="Saint-Michel">Saint-Michel</option>
+                                
+                                    <option value="Odéon">Odéon</option>
+                                
+                                    <option value="Saint-Germain-des-Prés">Saint-Germain-des-Prés</option>
+                                
+                                    <option value="Mabillon">Mabillon</option>
+                                
+                                    <option value="Cluny - La Sorbonne">Cluny - La Sorbonne</option>
+                                
+                                    <option value="Saint-Sulpice">Saint-Sulpice</option>
+                                
+                                    <option value="Saint-Placide">Saint-Placide</option>
+                                
+                                    <option value="Montparnasse - Bienvenüe">Montparnasse - Bienvenüe</option>
+                                
+                                    <option value="Vavin">Vavin</option>
+                                
+                                    <option value="Pasteur">Pasteur</option>
+                                
+                                    <option value="Edgar Quinet">Edgar Quinet</option>
+                                
+                                    <option value="Notre-Dame-des-Champs">Notre-Dame-des-Champs</option>
+                                
+                                    <option value="Falguière">Falguière</option>
+                                
+                                    <option value="Duroc">Duroc</option>
+                                
+                                    <option value="Gaîté">Gaîté</option>
+                                
+                                    <option value="Raspail">Raspail</option>
+                                
+                                    <option value="Denfert-Rochereau">Denfert-Rochereau</option>
+                                
+                                    <option value="Mouton-Duvernet">Mouton-Duvernet</option>
+                                
+                                    <option value="Saint-Jacques">Saint-Jacques</option>
+                                
+                                    <option value="Alésia">Alésia</option>
+                                
+                                    <option value="Porte d'Orléans">Porte d'Orléans</option>
+                                
+                                    <option value="Mairie de Montrouge">Mairie de Montrouge</option>
+                                
+                                    <option value="Barbara">Barbara</option>
+                                
+                                    <option value="Bagneux - Lucie Aubrac">Bagneux - Lucie Aubrac</option>
+                                
+                                    <option value="Bobigny - Pablo Picasso">Bobigny - Pablo Picasso</option>
+                                
+                                    <option value="Bobigny - Pantin - Raymond Queneau">Bobigny - Pantin - Raymond Queneau</option>
+                                
+                                    <option value="Église de Pantin">Église de Pantin</option>
+                                
+                                    <option value="Hoche">Hoche</option>
+                                
+                                    <option value="Porte de Pantin">Porte de Pantin</option>
+                                
+                                    <option value="Ourcq">Ourcq</option>
+                                
+                                    <option value="Richard-Lenoir">Richard-Lenoir</option>
+                                
+                                    <option value="Saint-Ambroise">Saint-Ambroise</option>
+                                
+                                    <option value="Saint-Marcel">Saint-Marcel</option>
+                                
+                                    <option value="Jussieu">Jussieu</option>
+                                
+                                    <option value="Campo-Formio">Campo-Formio</option>
+                                
+                                    <option value="Corvisart">Corvisart</option>
+                                
+                                    <option value="Nationale">Nationale</option>
+                                
+                                    <option value="Les Gobelins">Les Gobelins</option>
+                                
+                                    <option value="Tolbiac">Tolbiac</option>
+                                
+                                    <option value="Boissière">Boissière</option>
+                                
+                                    <option value="Trocadéro">Trocadéro</option>
+                                
+                                    <option value="Passy">Passy</option>
+                                
+                                    <option value="Rue de la Pompe">Rue de la Pompe</option>
+                                
+                                    <option value="Iéna">Iéna</option>
+                                
+                                    <option value="Bir-Hakeim">Bir-Hakeim</option>
+                                
+                                    <option value="Dupleix">Dupleix</option>
+                                
+                                    <option value="La Motte-Picquet - Grenelle">La Motte-Picquet - Grenelle</option>
+                                
+                                    <option value="Cambronne">Cambronne</option>
+                                
+                                    <option value="Commerce">Commerce</option>
+                                
+                                    <option value="École Militaire">École Militaire</option>
+                                
+                                    <option value="Avenue Émile-Zola">Avenue Émile-Zola</option>
+                                
+                                    <option value="Ségur">Ségur</option>
+                                
+                                    <option value="Sèvres - Lecourbe">Sèvres - Lecourbe</option>
+                                
+                                    <option value="Volontaires">Volontaires</option>
+                                
+                                    <option value="Glacière">Glacière</option>
+                                
+                                    <option value="Chevaleret">Chevaleret</option>
+                                
+                                    <option value="Quai de la Gare">Quai de la Gare</option>
+                                
+                                    <option value="Dugommier">Dugommier</option>
+                                
+                                    <option value="Cour Saint-Émilion">Cour Saint-Émilion</option>
+                                
+                                    <option value="Daumesnil">Daumesnil</option>
+                                
+                                    <option value="Bel-Air">Bel-Air</option>
+                                
+                                    <option value="Michel Bizot">Michel Bizot</option>
+                                
+                                    <option value="Fort d'Aubervilliers">Fort d'Aubervilliers</option>
+                                
+                                    <option value="Aubervilliers - Pantin - Quatre Chemins">Aubervilliers - Pantin - Quatre Chemins</option>
+                                
+                                    <option value="Porte de la Villette">Porte de la Villette</option>
+                                
+                                    <option value="Corentin Cariou">Corentin Cariou</option>
+                                
+                                    <option value="Crimée">Crimée</option>
+                                
+                                    <option value="Mairie d'Ivry">Mairie d'Ivry</option>
+                                
+                                    <option value="Cadet">Cadet</option>
+                                
+                                    <option value="Le Peletier">Le Peletier</option>
+                                
+                                    <option value="Sully - Morland">Sully - Morland</option>
+                                
+                                    <option value="Place Monge">Place Monge</option>
+                                
+                                    <option value="Cardinal Lemoine">Cardinal Lemoine</option>
+                                
+                                    <option value="Censier - Daubenton">Censier - Daubenton</option>
+                                
+                                    <option value="Maison Blanche">Maison Blanche</option>
+                                
+                                    <option value="Le Kremlin-Bicêtre">Le Kremlin-Bicêtre</option>
+                                
+                                    <option value="Villejuif - Léo Lagrange">Villejuif - Léo Lagrange</option>
+                                
+                                    <option value="Villejuif - Paul Vaillant-Couturier">Villejuif - Paul Vaillant-Couturier</option>
+                                
+                                    <option value="Villejuif - Louis Aragon">Villejuif - Louis Aragon</option>
+                                
+                                    <option value="Porte d'Italie">Porte d'Italie</option>
+                                
+                                    <option value="Porte de Choisy">Porte de Choisy</option>
+                                
+                                    <option value="Porte d'Ivry">Porte d'Ivry</option>
+                                
+                                    <option value="Pierre et Marie Curie">Pierre et Marie Curie</option>
+                                
+                                    <option value="Buttes Chaumont">Buttes Chaumont</option>
+                                
+                                    <option value="Botzaris">Botzaris</option>
+                                
+                                    <option value="Danube">Danube</option>
+                                
+                                    <option value="Place des Fêtes">Place des Fêtes</option>
+                                
+                                    <option value="Pré-Saint-Gervais">Pré-Saint-Gervais</option>
+                                
+                                    <option value="Jourdain">Jourdain</option>
+                                
+                                    <option value="Balard">Balard</option>
+                                
+                                    <option value="Lourmel">Lourmel</option>
+                                
+                                    <option value="Boucicaut">Boucicaut</option>
+                                
+                                    <option value="Félix Faure">Félix Faure</option>
+                                
+                                    <option value="La Tour-Maubourg">La Tour-Maubourg</option>
+                                
+                                    <option value="Varenne">Varenne</option>
+                                
+                                    <option value="Grands Boulevards">Grands Boulevards</option>
+                                
+                                    <option value="Saint-Sébastien - Froissart">Saint-Sébastien - Froissart</option>
+                                
+                                    <option value="Porte Dorée">Porte Dorée</option>
+                                
+                                    <option value="Porte de Charenton">Porte de Charenton</option>
+                                
+                                    <option value="Liberté">Liberté</option>
+                                
+                                    <option value="Charenton - Écoles">Charenton - Écoles</option>
+                                
+                                    <option value="École vétérinaire de Maisons-Alfort">École vétérinaire de Maisons-Alfort</option>
+                                
+                                    <option value="Maisons-Alfort - Stade">Maisons-Alfort - Stade</option>
+                                
+                                    <option value="Maisons-Alfort - Les Juilliottes">Maisons-Alfort - Les Juilliottes</option>
+                                
+                                    <option value="Créteil - L'Échat">Créteil - L'Échat</option>
+                                
+                                    <option value="Créteil - Université">Créteil - Université</option>
+                                
+                                    <option value="Créteil - Préfecture">Créteil - Préfecture</option>
+                                
+                                    <option value="Pointe du Lac">Pointe du Lac</option>
+                                
+                                    <option value="Pont de Sèvres">Pont de Sèvres</option>
+                                
+                                    <option value="Billancourt">Billancourt</option>
+                                
+                                    <option value="Marcel Sembat">Marcel Sembat</option>
+                                
+                                    <option value="Porte de Saint-Cloud">Porte de Saint-Cloud</option>
+                                
+                                    <option value="Exelmans">Exelmans</option>
+                                
+                                    <option value="Michel-Ange - Molitor">Michel-Ange - Molitor</option>
+                                
+                                    <option value="Michel-Ange - Auteuil">Michel-Ange - Auteuil</option>
+                                
+                                    <option value="Porte d'Auteuil">Porte d'Auteuil</option>
+                                
+                                    <option value="Jasmin">Jasmin</option>
+                                
+                                    <option value="Chardon-Lagache">Chardon-Lagache</option>
+                                
+                                    <option value="Ranelagh">Ranelagh</option>
+                                
+                                    <option value="La Muette">La Muette</option>
+                                
+                                    <option value="Voltaire">Voltaire</option>
+                                
+                                    <option value="Charonne">Charonne</option>
+                                
+                                    <option value="Maraîchers">Maraîchers</option>
+                                
+                                    <option value="Porte de Montreuil">Porte de Montreuil</option>
+                                
+                                    <option value="Robespierre">Robespierre</option>
+                                
+                                    <option value="Croix de Chavaux">Croix de Chavaux</option>
+                                
+                                    <option value="Mairie de Montreuil">Mairie de Montreuil</option>
+                                
+                                    <option value="Boulogne - Pont de Saint-Cloud">Boulogne - Pont de Saint-Cloud</option>
+                                
+                                    <option value="Boulogne - Jean Jaurès">Boulogne - Jean Jaurès</option>
+                                
+                                    <option value="Église d'Auteuil">Église d'Auteuil</option>
+                                
+                                    <option value="Mirabeau">Mirabeau</option>
+                                
+                                    <option value="Javel - André Citroën">Javel - André Citroën</option>
+                                
+                                    <option value="Charles Michels">Charles Michels</option>
+                                
+                                    <option value="Vaneau">Vaneau</option>
+                                
+                                    <option value="Saint-François-Xavier">Saint-François-Xavier</option>
+                                
+                                    <option value="Sèvres - Babylone">Sèvres - Babylone</option>
+                                
+                                    <option value="Rue du Bac">Rue du Bac</option>
+                                
+                                    <option value="Rennes">Rennes</option>
+                                
+                                    <option value="Maubert - Mutualité">Maubert - Mutualité</option>
+                                
+                                    <option value="Mairie d'Aubervilliers">Mairie d'Aubervilliers</option>
+                                
+                                    <option value="Aimé Césaire">Aimé Césaire</option>
+                                
+                                    <option value="Front Populaire">Front Populaire</option>
+                                
+                                    <option value="Porte de la Chapelle">Porte de la Chapelle</option>
+                                
+                                    <option value="Lamarck - Caulaincourt">Lamarck - Caulaincourt</option>
+                                
+                                    <option value="Notre-Dame-de-Lorette">Notre-Dame-de-Lorette</option>
+                                
+                                    <option value="Solférino">Solférino</option>
+                                
+                                    <option value="Vaugirard">Vaugirard</option>
+                                
+                                    <option value="Convention">Convention</option>
+                                
+                                    <option value="Porte de Versailles">Porte de Versailles</option>
+                                
+                                    <option value="Corentin Celton">Corentin Celton</option>
+                                
+                                    <option value="Mairie d'Issy">Mairie d'Issy</option>
+                                
+                                    <option value="Les Courtilles">Les Courtilles</option>
+                                
+                                    <option value="Les Agnettes">Les Agnettes</option>
+                                
+                                    <option value="Gabriel Péri">Gabriel Péri</option>
+                                
+                                    <option value="Mairie de Clichy">Mairie de Clichy</option>
+                                
+                                    <option value="Porte de Clichy">Porte de Clichy</option>
+                                
+                                    <option value="Brochant">Brochant</option>
+                                
+                                    <option value="Saint-Ouen">Saint-Ouen</option>
+                                
+                                    <option value="Saint-Denis - Université">Saint-Denis - Université</option>
+                                
+                                    <option value="Basilique de Saint-Denis">Basilique de Saint-Denis</option>
+                                
+                                    <option value="Saint-Denis - Porte de Paris">Saint-Denis - Porte de Paris</option>
+                                
+                                    <option value="Carrefour Pleyel">Carrefour Pleyel</option>
+                                
+                                    <option value="Mairie de Saint-Ouen">Mairie de Saint-Ouen</option>
+                                
+                                    <option value="Garibaldi">Garibaldi</option>
+                                
+                                    <option value="Châtillon - Montrouge">Châtillon - Montrouge</option>
+                                
+                                    <option value="Porte de Saint-Ouen">Porte de Saint-Ouen</option>
+                                
+                                    <option value="Guy Môquet">Guy Môquet</option>
+                                
+                                    <option value="Pernety">Pernety</option>
+                                
+                                    <option value="Plaisance">Plaisance</option>
+                                
+                                    <option value="Porte de Vanves">Porte de Vanves</option>
+                                
+                                    <option value="Malakoff - Plateau de Vanves">Malakoff - Plateau de Vanves</option>
+                                
+                                    <option value="Malakoff - Rue Étienne-Dolet">Malakoff - Rue Étienne-Dolet</option>
+                                
+                                    <option value="Bibliothèque François-Mitterrand">Bibliothèque François-Mitterrand</option>
+                                
+                                    <option value="Olympiades">Olympiades</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-2 pb-2">
+                            <button type="button" class="btn btn-primary btn-block" onclick="neighbourhoodHighlight({nodes: []});">Reset Selection</button>
+                        </div>
+                    </div>
+                </div>
+            
+            
+              <div id="filter-menu" class="card-header">
+                <div class="row no-gutters">
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'item')"
+                            id="select-item"
+                        >
+                        <option value="">Select a network item</option>
+                        <option value="edge">edge</option>
+                        <option value="node">node</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'property')"
+                            id="select-property"
+                        >
+                        <option value="">Select a property...</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            id="select-value"
+                        >
+                        <option value="">Select value(s)...</option>
+                    </select>
+                  </div>
+                  <div class="col-1 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="highlightFilter(filter);">Filter</button>
+                  </div>
+                  <div class="col-2 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="clearFilter(true)">Reset Selection</button>
+                  </div>
+                </div>
+              </div>
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+                  new TomSelect("#select-node",{
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      }
+                  });
+              
+
+              
+                  // explicitly using onItemAdd and this function as we need to save multiple values
+                  let updateValueFilter = function() {
+                      return function () {
+                      filter['value'].push(arguments[0])
+                      }
+                  }
+
+                  let valueControl = new TomSelect("#select-value",{
+                      maxItems: null,
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: updateValueFilter()
+                  });
+
+                  let addValues = function() {
+                      return function () {
+                          // clear the current value options and add the selected attribute values
+                          // tom-select handles duplicates
+                          let selectedProperty = arguments[0];
+                          valueControl.clear();
+                          valueControl.clearOptions();
+                          filter['value'] = []
+                          if (filter['item'] === 'node') {
+                              for (let each in allNodes) {
+                                  valueControl.addOption({
+                                      id:allNodes[each][selectedProperty],
+                                      title:allNodes[each][selectedProperty]
+                                  })
+                              }
+                          }
+                          else if (filter['item'] === 'edge') {
+                              for (let each in allEdges) {
+                                  valueControl.addOption({
+                                      id:allEdges[each][selectedProperty],
+                                      title:allEdges[each][selectedProperty]
+                                  })
+                              }
+                          }
+                      }
+                  };
+
+                  let propControl = new TomSelect("#select-property",{
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addValues()
+                  });
+
+                  let addProperties = function() {
+                      return function () {
+                          // loops through the selected network item and adds the attributes to dropdown
+                          // tom-select handles duplicates
+                          clearFilter(false)
+                          if (arguments[0] === 'edge') {
+                              for (let each in allEdges) {
+                                  if (allEdges.hasOwnProperty(each)) {
+                                      for (let eachProp in allEdges[each]) {
+                                          if (allEdges[each].hasOwnProperty(eachProp)) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                          else if (arguments[0] === 'node') {
+                              for (let each in allNodes) {
+                                  if (allNodes.hasOwnProperty(each)) {
+                                      for (let eachProp in allNodes[each]) {
+                                          if (allNodes[each].hasOwnProperty(eachProp)
+                                              && (eachProp !== 'hidden' && eachProp !== 'savedLabel'
+                                                  && eachProp !== 'hiddenLabel')) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  };
+
+                  let itemControl = new TomSelect("#select-item",{
+                      create: false,
+                      sortField:{
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addProperties()
+                  });
+
+                  function clearFilter(reset) {
+                      // utility function to clear all the selected filter options
+                      // if reset is set to true, the existing filter will be removed
+                      // else, only the dropdown options are cleared
+                      propControl.clear();
+                      propControl.clearOptions();
+                      valueControl.clear();
+                      valueControl.clearOptions();
+                      filter = {
+                          item : '',
+                          property : '',
+                          value : []
+                      }
+                      if (reset) {
+                          itemControl.clear();
+                          filterHighlight({nodes: []})
+                      }
+                  }
+
+                  function updateFilter(value, key) {
+                      // key could be 'item' or 'property' and value is as selected in dropdown
+                      filter[key] = value
+                  }
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "Esplanade de La D\u00e9fense", "label": "Esplanade de La D\u00e9fense", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "La D\u00e9fense", "label": "La D\u00e9fense", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pont de Neuilly", "label": "Pont de Neuilly", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Les Sablons", "label": "Les Sablons", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte Maillot", "label": "Porte Maillot", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Argentine", "label": "Argentine", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Charles de Gaulle - \u00c9toile", "label": "Charles de Gaulle - \u00c9toile", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "George V", "label": "George V", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Victor Hugo", "label": "Victor Hugo", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ternes", "label": "Ternes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Place d\u0027Italie", "label": "Place d\u0027Italie", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Kl\u00e9ber", "label": "Kl\u00e9ber", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Franklin D. Roosevelt", "label": "Franklin D. Roosevelt", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Champs-\u00c9lys\u00e9es - Clemenceau", "label": "Champs-\u00c9lys\u00e9es - Clemenceau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Alma - Marceau", "label": "Alma - Marceau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Philippe du Roule", "label": "Saint-Philippe du Roule", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Concorde", "label": "Concorde", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Miromesnil", "label": "Miromesnil", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Invalides", "label": "Invalides", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Tuileries", "label": "Tuileries", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Madeleine", "label": "Madeleine", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Assembl\u00e9e nationale", "label": "Assembl\u00e9e nationale", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Palais-Royal - Mus\u00e9e du Louvre", "label": "Palais-Royal - Mus\u00e9e du Louvre", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Louvre - Rivoli", "label": "Louvre - Rivoli", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pyramides", "label": "Pyramides", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pont-Neuf", "label": "Pont-Neuf", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ch\u00e2telet", "label": "Ch\u00e2telet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "H\u00f4tel de Ville", "label": "H\u00f4tel de Ville", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Les Halles", "label": "Les Halles", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cit\u00e9", "label": "Cit\u00e9", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pont Marie", "label": "Pont Marie", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gare d\u0027Austerlitz", "label": "Gare d\u0027Austerlitz", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gare de Lyon", "label": "Gare de Lyon", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Paul", "label": "Saint-Paul", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Rambuteau", "label": "Rambuteau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bastille", "label": "Bastille", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Br\u00e9guet - Sabin", "label": "Br\u00e9guet - Sabin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Quai de la Rap\u00e9e", "label": "Quai de la Rap\u00e9e", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Chemin Vert", "label": "Chemin Vert", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ledru-Rollin", "label": "Ledru-Rollin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Reuilly - Diderot", "label": "Reuilly - Diderot", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bercy", "label": "Bercy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Nation", "label": "Nation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Faidherbe - Chaligny", "label": "Faidherbe - Chaligny", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Montgallet", "label": "Montgallet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Vincennes", "label": "Porte de Vincennes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Avron", "label": "Avron", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pont de Levallois - B\u00e9con", "label": "Pont de Levallois - B\u00e9con", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Picpus", "label": "Picpus", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "La Courneuve - 8 Mai 1945", "label": "La Courneuve - 8 Mai 1945", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Rue des Boulets", "label": "Rue des Boulets", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Buzenval", "label": "Buzenval", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Mand\u00e9", "label": "Saint-Mand\u00e9", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "B\u00e9rault", "label": "B\u00e9rault", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ch\u00e2teau de Vincennes", "label": "Ch\u00e2teau de Vincennes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte Dauphine", "label": "Porte Dauphine", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Courcelles", "label": "Courcelles", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Monceau", "label": "Monceau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Villiers", "label": "Villiers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Rome", "label": "Rome", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Malesherbes", "label": "Malesherbes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Europe", "label": "Europe", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Place de Clichy", "label": "Place de Clichy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Blanche", "label": "Blanche", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "La Fourche", "label": "La Fourche", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Li\u00e8ge", "label": "Li\u00e8ge", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pigalle", "label": "Pigalle", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Anvers", "label": "Anvers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Abbesses", "label": "Abbesses", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Georges", "label": "Saint-Georges", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Barb\u00e8s - Rochechouart", "label": "Barb\u00e8s - Rochechouart", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "La Chapelle", "label": "La Chapelle", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ch\u00e2teau Rouge", "label": "Ch\u00e2teau Rouge", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gare du Nord", "label": "Gare du Nord", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Stalingrad", "label": "Stalingrad", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Jaur\u00e8s", "label": "Jaur\u00e8s", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Riquet", "label": "Riquet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Louis Blanc", "label": "Louis Blanc", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Colonel Fabien", "label": "Colonel Fabien", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Laumi\u00e8re", "label": "Laumi\u00e8re", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bolivar", "label": "Bolivar", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Belleville", "label": "Belleville", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Couronnes", "label": "Couronnes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Goncourt", "label": "Goncourt", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pyr\u00e9n\u00e9es", "label": "Pyr\u00e9n\u00e9es", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "M\u00e9nilmontant", "label": "M\u00e9nilmontant", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "P\u00e8re Lachaise", "label": "P\u00e8re Lachaise", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Philippe Auguste", "label": "Philippe Auguste", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Rue Saint-Maur", "label": "Rue Saint-Maur", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gambetta", "label": "Gambetta", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Alexandre Dumas", "label": "Alexandre Dumas", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Anatole France", "label": "Anatole France", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Louise Michel", "label": "Louise Michel", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Champerret", "label": "Porte de Champerret", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pereire", "label": "Pereire", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Wagram", "label": "Wagram", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Lazare", "label": "Saint-Lazare", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Havre - Caumartin", "label": "Havre - Caumartin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Trinit\u00e9 - d\u0027Estienne d\u0027Orves", "label": "Trinit\u00e9 - d\u0027Estienne d\u0027Orves", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pont Cardinet", "label": "Pont Cardinet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Op\u00e9ra", "label": "Op\u00e9ra", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Augustin", "label": "Saint-Augustin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Chauss\u00e9e d\u0027Antin - La Fayette", "label": "Chauss\u00e9e d\u0027Antin - La Fayette", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Quatre-Septembre", "label": "Quatre-Septembre", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Richelieu - Drouot", "label": "Richelieu - Drouot", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bourse", "label": "Bourse", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Sentier", "label": "Sentier", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "R\u00e9aumur - S\u00e9bastopol", "label": "R\u00e9aumur - S\u00e9bastopol", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Arts et M\u00e9tiers", "label": "Arts et M\u00e9tiers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Strasbourg - Saint-Denis", "label": "Strasbourg - Saint-Denis", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "\u00c9tienne Marcel", "label": "\u00c9tienne Marcel", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Temple", "label": "Temple", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "R\u00e9publique", "label": "R\u00e9publique", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Parmentier", "label": "Parmentier", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Jacques Bonsergent", "label": "Jacques Bonsergent", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Oberkampf", "label": "Oberkampf", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Filles du Calvaire", "label": "Filles du Calvaire", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Bagnolet", "label": "Porte de Bagnolet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gallieni", "label": "Gallieni", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pelleport", "label": "Pelleport", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte des Lilas", "label": "Porte des Lilas", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Clignancourt", "label": "Porte de Clignancourt", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "T\u00e9l\u00e9graphe", "label": "T\u00e9l\u00e9graphe", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mairie des Lilas", "label": "Mairie des Lilas", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Simplon", "label": "Simplon", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Marcadet - Poissonniers", "label": "Marcadet - Poissonniers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Marx Dormoy", "label": "Marx Dormoy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Jules Joffrin", "label": "Jules Joffrin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gare de l\u0027Est", "label": "Gare de l\u0027Est", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ch\u00e2teau d\u0027Eau", "label": "Ch\u00e2teau d\u0027Eau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ch\u00e2teau-Landon", "label": "Ch\u00e2teau-Landon", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Poissonni\u00e8re", "label": "Poissonni\u00e8re", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bonne-Nouvelle", "label": "Bonne-Nouvelle", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Michel", "label": "Saint-Michel", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Od\u00e9on", "label": "Od\u00e9on", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Germain-des-Pr\u00e9s", "label": "Saint-Germain-des-Pr\u00e9s", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mabillon", "label": "Mabillon", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cluny - La Sorbonne", "label": "Cluny - La Sorbonne", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Sulpice", "label": "Saint-Sulpice", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Placide", "label": "Saint-Placide", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Montparnasse - Bienven\u00fce", "label": "Montparnasse - Bienven\u00fce", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Vavin", "label": "Vavin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pasteur", "label": "Pasteur", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Edgar Quinet", "label": "Edgar Quinet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Notre-Dame-des-Champs", "label": "Notre-Dame-des-Champs", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Falgui\u00e8re", "label": "Falgui\u00e8re", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Duroc", "label": "Duroc", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ga\u00eet\u00e9", "label": "Ga\u00eet\u00e9", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Raspail", "label": "Raspail", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Denfert-Rochereau", "label": "Denfert-Rochereau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mouton-Duvernet", "label": "Mouton-Duvernet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Jacques", "label": "Saint-Jacques", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Al\u00e9sia", "label": "Al\u00e9sia", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte d\u0027Orl\u00e9ans", "label": "Porte d\u0027Orl\u00e9ans", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mairie de Montrouge", "label": "Mairie de Montrouge", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Barbara", "label": "Barbara", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bagneux - Lucie Aubrac", "label": "Bagneux - Lucie Aubrac", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bobigny - Pablo Picasso", "label": "Bobigny - Pablo Picasso", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bobigny - Pantin - Raymond Queneau", "label": "Bobigny - Pantin - Raymond Queneau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "\u00c9glise de Pantin", "label": "\u00c9glise de Pantin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Hoche", "label": "Hoche", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Pantin", "label": "Porte de Pantin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ourcq", "label": "Ourcq", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Richard-Lenoir", "label": "Richard-Lenoir", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Ambroise", "label": "Saint-Ambroise", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Marcel", "label": "Saint-Marcel", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Jussieu", "label": "Jussieu", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Campo-Formio", "label": "Campo-Formio", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Corvisart", "label": "Corvisart", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Nationale", "label": "Nationale", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Les Gobelins", "label": "Les Gobelins", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Tolbiac", "label": "Tolbiac", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Boissi\u00e8re", "label": "Boissi\u00e8re", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Trocad\u00e9ro", "label": "Trocad\u00e9ro", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Passy", "label": "Passy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Rue de la Pompe", "label": "Rue de la Pompe", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "I\u00e9na", "label": "I\u00e9na", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bir-Hakeim", "label": "Bir-Hakeim", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Dupleix", "label": "Dupleix", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "La Motte-Picquet - Grenelle", "label": "La Motte-Picquet - Grenelle", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cambronne", "label": "Cambronne", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Commerce", "label": "Commerce", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "\u00c9cole Militaire", "label": "\u00c9cole Militaire", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Avenue \u00c9mile-Zola", "label": "Avenue \u00c9mile-Zola", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "S\u00e9gur", "label": "S\u00e9gur", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "S\u00e8vres - Lecourbe", "label": "S\u00e8vres - Lecourbe", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Volontaires", "label": "Volontaires", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Glaci\u00e8re", "label": "Glaci\u00e8re", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Chevaleret", "label": "Chevaleret", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Quai de la Gare", "label": "Quai de la Gare", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Dugommier", "label": "Dugommier", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cour Saint-\u00c9milion", "label": "Cour Saint-\u00c9milion", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Daumesnil", "label": "Daumesnil", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Bel-Air", "label": "Bel-Air", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Michel Bizot", "label": "Michel Bizot", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Fort d\u0027Aubervilliers", "label": "Fort d\u0027Aubervilliers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Aubervilliers - Pantin - Quatre Chemins", "label": "Aubervilliers - Pantin - Quatre Chemins", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de la Villette", "label": "Porte de la Villette", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Corentin Cariou", "label": "Corentin Cariou", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Crim\u00e9e", "label": "Crim\u00e9e", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mairie d\u0027Ivry", "label": "Mairie d\u0027Ivry", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cadet", "label": "Cadet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Le Peletier", "label": "Le Peletier", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Sully - Morland", "label": "Sully - Morland", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Place Monge", "label": "Place Monge", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cardinal Lemoine", "label": "Cardinal Lemoine", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Censier - Daubenton", "label": "Censier - Daubenton", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Maison Blanche", "label": "Maison Blanche", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Le Kremlin-Bic\u00eatre", "label": "Le Kremlin-Bic\u00eatre", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Villejuif - L\u00e9o Lagrange", "label": "Villejuif - L\u00e9o Lagrange", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Villejuif - Paul Vaillant-Couturier", "label": "Villejuif - Paul Vaillant-Couturier", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Villejuif - Louis Aragon", "label": "Villejuif - Louis Aragon", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte d\u0027Italie", "label": "Porte d\u0027Italie", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Choisy", "label": "Porte de Choisy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte d\u0027Ivry", "label": "Porte d\u0027Ivry", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pierre et Marie Curie", "label": "Pierre et Marie Curie", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Buttes Chaumont", "label": "Buttes Chaumont", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Botzaris", "label": "Botzaris", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Danube", "label": "Danube", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Place des F\u00eates", "label": "Place des F\u00eates", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pr\u00e9-Saint-Gervais", "label": "Pr\u00e9-Saint-Gervais", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Jourdain", "label": "Jourdain", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Balard", "label": "Balard", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Lourmel", "label": "Lourmel", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Boucicaut", "label": "Boucicaut", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "F\u00e9lix Faure", "label": "F\u00e9lix Faure", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "La Tour-Maubourg", "label": "La Tour-Maubourg", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Varenne", "label": "Varenne", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Grands Boulevards", "label": "Grands Boulevards", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-S\u00e9bastien - Froissart", "label": "Saint-S\u00e9bastien - Froissart", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte Dor\u00e9e", "label": "Porte Dor\u00e9e", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Charenton", "label": "Porte de Charenton", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Libert\u00e9", "label": "Libert\u00e9", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Charenton - \u00c9coles", "label": "Charenton - \u00c9coles", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "\u00c9cole v\u00e9t\u00e9rinaire de Maisons-Alfort", "label": "\u00c9cole v\u00e9t\u00e9rinaire de Maisons-Alfort", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Maisons-Alfort - Stade", "label": "Maisons-Alfort - Stade", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Maisons-Alfort - Les Juilliottes", "label": "Maisons-Alfort - Les Juilliottes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cr\u00e9teil - L\u0027\u00c9chat", "label": "Cr\u00e9teil - L\u0027\u00c9chat", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cr\u00e9teil - Universit\u00e9", "label": "Cr\u00e9teil - Universit\u00e9", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Cr\u00e9teil - Pr\u00e9fecture", "label": "Cr\u00e9teil - Pr\u00e9fecture", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pointe du Lac", "label": "Pointe du Lac", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pont de S\u00e8vres", "label": "Pont de S\u00e8vres", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Billancourt", "label": "Billancourt", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Marcel Sembat", "label": "Marcel Sembat", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Saint-Cloud", "label": "Porte de Saint-Cloud", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Exelmans", "label": "Exelmans", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Michel-Ange - Molitor", "label": "Michel-Ange - Molitor", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Michel-Ange - Auteuil", "label": "Michel-Ange - Auteuil", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte d\u0027Auteuil", "label": "Porte d\u0027Auteuil", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Jasmin", "label": "Jasmin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Chardon-Lagache", "label": "Chardon-Lagache", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ranelagh", "label": "Ranelagh", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "La Muette", "label": "La Muette", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Voltaire", "label": "Voltaire", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Charonne", "label": "Charonne", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mara\u00eechers", "label": "Mara\u00eechers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Montreuil", "label": "Porte de Montreuil", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Robespierre", "label": "Robespierre", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Croix de Chavaux", "label": "Croix de Chavaux", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mairie de Montreuil", "label": "Mairie de Montreuil", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Boulogne - Pont de Saint-Cloud", "label": "Boulogne - Pont de Saint-Cloud", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Boulogne - Jean Jaur\u00e8s", "label": "Boulogne - Jean Jaur\u00e8s", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "\u00c9glise d\u0027Auteuil", "label": "\u00c9glise d\u0027Auteuil", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mirabeau", "label": "Mirabeau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Javel - Andr\u00e9 Citro\u00ebn", "label": "Javel - Andr\u00e9 Citro\u00ebn", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Charles Michels", "label": "Charles Michels", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Vaneau", "label": "Vaneau", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Fran\u00e7ois-Xavier", "label": "Saint-Fran\u00e7ois-Xavier", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "S\u00e8vres - Babylone", "label": "S\u00e8vres - Babylone", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Rue du Bac", "label": "Rue du Bac", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Rennes", "label": "Rennes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Maubert - Mutualit\u00e9", "label": "Maubert - Mutualit\u00e9", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mairie d\u0027Aubervilliers", "label": "Mairie d\u0027Aubervilliers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Aim\u00e9 C\u00e9saire", "label": "Aim\u00e9 C\u00e9saire", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Front Populaire", "label": "Front Populaire", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de la Chapelle", "label": "Porte de la Chapelle", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Lamarck - Caulaincourt", "label": "Lamarck - Caulaincourt", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Notre-Dame-de-Lorette", "label": "Notre-Dame-de-Lorette", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Solf\u00e9rino", "label": "Solf\u00e9rino", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Vaugirard", "label": "Vaugirard", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Convention", "label": "Convention", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Versailles", "label": "Porte de Versailles", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Corentin Celton", "label": "Corentin Celton", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mairie d\u0027Issy", "label": "Mairie d\u0027Issy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Les Courtilles", "label": "Les Courtilles", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Les Agnettes", "label": "Les Agnettes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gabriel P\u00e9ri", "label": "Gabriel P\u00e9ri", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mairie de Clichy", "label": "Mairie de Clichy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Clichy", "label": "Porte de Clichy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Brochant", "label": "Brochant", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Ouen", "label": "Saint-Ouen", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Denis - Universit\u00e9", "label": "Saint-Denis - Universit\u00e9", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Basilique de Saint-Denis", "label": "Basilique de Saint-Denis", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Saint-Denis - Porte de Paris", "label": "Saint-Denis - Porte de Paris", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Carrefour Pleyel", "label": "Carrefour Pleyel", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Mairie de Saint-Ouen", "label": "Mairie de Saint-Ouen", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Garibaldi", "label": "Garibaldi", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ch\u00e2tillon - Montrouge", "label": "Ch\u00e2tillon - Montrouge", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Saint-Ouen", "label": "Porte de Saint-Ouen", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Guy M\u00f4quet", "label": "Guy M\u00f4quet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pernety", "label": "Pernety", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Plaisance", "label": "Plaisance", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Porte de Vanves", "label": "Porte de Vanves", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Malakoff - Plateau de Vanves", "label": "Malakoff - Plateau de Vanves", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Malakoff - Rue \u00c9tienne-Dolet", "label": "Malakoff - Rue \u00c9tienne-Dolet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Biblioth\u00e8que Fran\u00e7ois-Mitterrand", "label": "Biblioth\u00e8que Fran\u00e7ois-Mitterrand", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Olympiades", "label": "Olympiades", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"from": "Esplanade de La D\u00e9fense", "label": "1578", "to": "La D\u00e9fense", "width": 0.45085714285714285}, {"from": "Esplanade de La D\u00e9fense", "label": "4648", "to": "Pont de Neuilly", "width": 1.328}, {"from": "Pont de Neuilly", "label": "7589", "to": "Les Sablons", "width": 2.168285714285714}, {"from": "Les Sablons", "label": "10638", "to": "Porte Maillot", "width": 3.0394285714285716}, {"from": "Porte Maillot", "label": "13636", "to": "Argentine", "width": 3.896}, {"from": "Argentine", "label": "16511", "to": "Charles de Gaulle - \u00c9toile", "width": 4.717428571428571}, {"from": "Charles de Gaulle - \u00c9toile", "label": "18142", "to": "George V", "width": 5.183428571428571}, {"from": "Charles de Gaulle - \u00c9toile", "label": "11733", "to": "Victor Hugo", "width": 3.3522857142857143}, {"from": "Charles de Gaulle - \u00c9toile", "label": "13076", "to": "Ternes", "width": 3.736}, {"from": "Charles de Gaulle - \u00c9toile", "label": "36709", "to": "Place d\u0027Italie", "width": 10.488285714285714}, {"from": "Charles de Gaulle - \u00c9toile", "label": "19851", "to": "Kl\u00e9ber", "width": 5.671714285714286}, {"from": "George V", "label": "18042", "to": "Franklin D. Roosevelt", "width": 5.154857142857143}, {"from": "Franklin D. Roosevelt", "label": "26387", "to": "Champs-\u00c9lys\u00e9es - Clemenceau", "width": 7.539142857142857}, {"from": "Franklin D. Roosevelt", "label": "13569", "to": "Alma - Marceau", "width": 3.876857142857143}, {"from": "Franklin D. Roosevelt", "label": "6206", "to": "Saint-Philippe du Roule", "width": 1.7731428571428571}, {"from": "Champs-\u00c9lys\u00e9es - Clemenceau", "label": "11191", "to": "Concorde", "width": 3.1974285714285715}, {"from": "Champs-\u00c9lys\u00e9es - Clemenceau", "label": "10502", "to": "Miromesnil", "width": 3.0005714285714284}, {"from": "Champs-\u00c9lys\u00e9es - Clemenceau", "label": "7740", "to": "Invalides", "width": 2.2114285714285713}, {"from": "Concorde", "label": "2796", "to": "Tuileries", "width": 0.7988571428571428}, {"from": "Concorde", "label": "34198", "to": "Invalides", "width": 9.770857142857142}, {"from": "Concorde", "label": "48458", "to": "Madeleine", "width": 13.845142857142857}, {"from": "Concorde", "label": "8428", "to": "Assembl\u00e9e nationale", "width": 2.408}, {"from": "Tuileries", "label": "2069", "to": "Palais-Royal - Mus\u00e9e du Louvre", "width": 0.5911428571428572}, {"from": "Palais-Royal - Mus\u00e9e du Louvre", "label": "2324", "to": "Louvre - Rivoli", "width": 0.664}, {"from": "Palais-Royal - Mus\u00e9e du Louvre", "label": "1700", "to": "Pyramides", "width": 0.4857142857142857}, {"from": "Palais-Royal - Mus\u00e9e du Louvre", "label": "617", "to": "Pont-Neuf", "width": 0.1762857142857143}, {"from": "Louvre - Rivoli", "label": "3348", "to": "Ch\u00e2telet", "width": 0.9565714285714285}, {"from": "Ch\u00e2telet", "label": "22189", "to": "H\u00f4tel de Ville", "width": 6.339714285714286}, {"from": "Ch\u00e2telet", "label": "11430", "to": "Les Halles", "width": 3.2657142857142856}, {"from": "Ch\u00e2telet", "label": "30030", "to": "Cit\u00e9", "width": 8.58}, {"from": "Ch\u00e2telet", "label": "1001", "to": "Pont-Neuf", "width": 0.286}, {"from": "Ch\u00e2telet", "label": "4078", "to": "Pont Marie", "width": 1.165142857142857}, {"from": "Ch\u00e2telet", "label": "31451", "to": "Gare d\u0027Austerlitz", "width": 8.986}, {"from": "Ch\u00e2telet", "label": "55652", "to": "Pyramides", "width": 15.900571428571428}, {"from": "Ch\u00e2telet", "label": "72713", "to": "Gare de Lyon", "width": 20.775142857142857}, {"from": "H\u00f4tel de Ville", "label": "1326", "to": "Saint-Paul", "width": 0.37885714285714284}, {"from": "H\u00f4tel de Ville", "label": "19919", "to": "Rambuteau", "width": 5.691142857142857}, {"from": "Saint-Paul", "label": "627", "to": "Bastille", "width": 0.17914285714285713}, {"from": "Bastille", "label": "14787", "to": "Gare de Lyon", "width": 4.224857142857143}, {"from": "Bastille", "label": "10313", "to": "Br\u00e9guet - Sabin", "width": 2.9465714285714286}, {"from": "Bastille", "label": "4881", "to": "Quai de la Rap\u00e9e", "width": 1.3945714285714286}, {"from": "Bastille", "label": "4233", "to": "Chemin Vert", "width": 1.2094285714285715}, {"from": "Bastille", "label": "2067", "to": "Ledru-Rollin", "width": 0.5905714285714285}, {"from": "Gare de Lyon", "label": "48431", "to": "Reuilly - Diderot", "width": 13.837428571428571}, {"from": "Gare de Lyon", "label": "33003", "to": "Bercy", "width": 9.429428571428572}, {"from": "Reuilly - Diderot", "label": "45775", "to": "Nation", "width": 13.07857142857143}, {"from": "Reuilly - Diderot", "label": "1774", "to": "Faidherbe - Chaligny", "width": 0.5068571428571429}, {"from": "Reuilly - Diderot", "label": "2205", "to": "Montgallet", "width": 0.63}, {"from": "Nation", "label": "12712", "to": "Porte de Vincennes", "width": 3.632}, {"from": "Nation", "label": "24424", "to": "Avron", "width": 6.978285714285715}, {"from": "Nation", "label": "10031", "to": "Pont de Levallois - B\u00e9con", "width": 2.866}, {"from": "Nation", "label": "10942", "to": "Picpus", "width": 3.1262857142857143}, {"from": "Nation", "label": "16846", "to": "La Courneuve - 8 Mai 1945", "width": 4.813142857142857}, {"from": "Nation", "label": "7660", "to": "Rue des Boulets", "width": 2.1885714285714286}, {"from": "Nation", "label": "25851", "to": "Buzenval", "width": 7.386}, {"from": "Porte de Vincennes", "label": "10565", "to": "Saint-Mand\u00e9", "width": 3.0185714285714287}, {"from": "Saint-Mand\u00e9", "label": "9014", "to": "B\u00e9rault", "width": 2.5754285714285716}, {"from": "B\u00e9rault", "label": "8286", "to": "Ch\u00e2teau de Vincennes", "width": 2.3674285714285714}, {"from": "Ch\u00e2teau de Vincennes", "label": "8603", "to": "Porte Dauphine", "width": 2.458}, {"from": "Porte Dauphine", "label": "9763", "to": "Victor Hugo", "width": 2.7894285714285716}, {"from": "Ternes", "label": "11579", "to": "Courcelles", "width": 3.3082857142857143}, {"from": "Courcelles", "label": "11101", "to": "Monceau", "width": 3.1717142857142857}, {"from": "Monceau", "label": "11816", "to": "Villiers", "width": 3.376}, {"from": "Villiers", "label": "11041", "to": "Rome", "width": 3.1545714285714284}, {"from": "Villiers", "label": "8461", "to": "Malesherbes", "width": 2.4174285714285713}, {"from": "Villiers", "label": "9668", "to": "Europe", "width": 2.7622857142857145}, {"from": "Rome", "label": "10360", "to": "Place de Clichy", "width": 2.96}, {"from": "Place de Clichy", "label": "27522", "to": "Blanche", "width": 7.863428571428571}, {"from": "Place de Clichy", "label": "10577", "to": "La Fourche", "width": 3.022}, {"from": "Place de Clichy", "label": "18676", "to": "Li\u00e8ge", "width": 5.336}, {"from": "Blanche", "label": "26194", "to": "Pigalle", "width": 7.484}, {"from": "Pigalle", "label": "25118", "to": "Anvers", "width": 7.176571428571428}, {"from": "Pigalle", "label": "5013", "to": "Abbesses", "width": 1.4322857142857144}, {"from": "Pigalle", "label": "5061", "to": "Saint-Georges", "width": 1.446}, {"from": "Anvers", "label": "24422", "to": "Barb\u00e8s - Rochechouart", "width": 6.977714285714286}, {"from": "Barb\u00e8s - Rochechouart", "label": "15189", "to": "La Chapelle", "width": 4.339714285714286}, {"from": "Barb\u00e8s - Rochechouart", "label": "17200", "to": "Ch\u00e2teau Rouge", "width": 4.914285714285715}, {"from": "Barb\u00e8s - Rochechouart", "label": "9318", "to": "Gare du Nord", "width": 2.6622857142857144}, {"from": "La Chapelle", "label": "14536", "to": "Stalingrad", "width": 4.153142857142857}, {"from": "Stalingrad", "label": "17662", "to": "Jaur\u00e8s", "width": 5.046285714285714}, {"from": "Stalingrad", "label": "7688", "to": "Gare du Nord", "width": 2.1965714285714286}, {"from": "Stalingrad", "label": "10811", "to": "Riquet", "width": 3.088857142857143}, {"from": "Stalingrad", "label": "4847", "to": "Louis Blanc", "width": 1.3848571428571428}, {"from": "Jaur\u00e8s", "label": "13921", "to": "Colonel Fabien", "width": 3.9774285714285713}, {"from": "Jaur\u00e8s", "label": "17360", "to": "Laumi\u00e8re", "width": 4.96}, {"from": "Jaur\u00e8s", "label": "4012", "to": "Louis Blanc", "width": 1.1462857142857144}, {"from": "Jaur\u00e8s", "label": "7356", "to": "Bolivar", "width": 2.101714285714286}, {"from": "Colonel Fabien", "label": "14723", "to": "Belleville", "width": 4.206571428571428}, {"from": "Belleville", "label": "7007", "to": "Couronnes", "width": 2.002}, {"from": "Belleville", "label": "17700", "to": "Goncourt", "width": 5.057142857142857}, {"from": "Belleville", "label": "11212", "to": "Pyr\u00e9n\u00e9es", "width": 3.2034285714285713}, {"from": "Couronnes", "label": "5525", "to": "M\u00e9nilmontant", "width": 1.5785714285714285}, {"from": "M\u00e9nilmontant", "label": "5336", "to": "P\u00e8re Lachaise", "width": 1.5245714285714285}, {"from": "P\u00e8re Lachaise", "label": "20503", "to": "Philippe Auguste", "width": 5.858}, {"from": "P\u00e8re Lachaise", "label": "6935", "to": "Rue Saint-Maur", "width": 1.9814285714285715}, {"from": "P\u00e8re Lachaise", "label": "20495", "to": "Gambetta", "width": 5.855714285714286}, {"from": "Philippe Auguste", "label": "21302", "to": "Alexandre Dumas", "width": 6.086285714285714}, {"from": "Alexandre Dumas", "label": "22608", "to": "Avron", "width": 6.459428571428571}, {"from": "Pont de Levallois - B\u00e9con", "label": "7323", "to": "Anatole France", "width": 2.092285714285714}, {"from": "Anatole France", "label": "5117", "to": "Louise Michel", "width": 1.462}, {"from": "Louise Michel", "label": "3867", "to": "Porte de Champerret", "width": 1.1048571428571428}, {"from": "Porte de Champerret", "label": "3875", "to": "Pereire", "width": 1.1071428571428572}, {"from": "Pereire", "label": "4711", "to": "Wagram", "width": 1.346}, {"from": "Wagram", "label": "6231", "to": "Malesherbes", "width": 1.7802857142857142}, {"from": "Europe", "label": "11050", "to": "Saint-Lazare", "width": 3.157142857142857}, {"from": "Saint-Lazare", "label": "11755", "to": "Havre - Caumartin", "width": 3.3585714285714285}, {"from": "Saint-Lazare", "label": "8584", "to": "Trinit\u00e9 - d\u0027Estienne d\u0027Orves", "width": 2.4525714285714284}, {"from": "Saint-Lazare", "label": "47607", "to": "Madeleine", "width": 13.602}, {"from": "Saint-Lazare", "label": "20261", "to": "Li\u00e8ge", "width": 5.788857142857143}, {"from": "Saint-Lazare", "label": "17079", "to": "Miromesnil", "width": 4.879714285714286}, {"from": "Saint-Lazare", "label": "43084", "to": "Pont Cardinet", "width": 12.309714285714286}, {"from": "Havre - Caumartin", "label": "8926", "to": "Op\u00e9ra", "width": 2.5502857142857143}, {"from": "Havre - Caumartin", "label": "1422", "to": "Saint-Augustin", "width": 0.4062857142857143}, {"from": "Havre - Caumartin", "label": "4761", "to": "Chauss\u00e9e d\u0027Antin - La Fayette", "width": 1.3602857142857143}, {"from": "Op\u00e9ra", "label": "5256", "to": "Quatre-Septembre", "width": 1.5017142857142858}, {"from": "Op\u00e9ra", "label": "11101", "to": "Chauss\u00e9e d\u0027Antin - La Fayette", "width": 3.1717142857142857}, {"from": "Op\u00e9ra", "label": "10181", "to": "Pyramides", "width": 2.908857142857143}, {"from": "Op\u00e9ra", "label": "16477", "to": "Madeleine", "width": 4.707714285714285}, {"from": "Op\u00e9ra", "label": "13221", "to": "Richelieu - Drouot", "width": 3.7774285714285716}, {"from": "Quatre-Septembre", "label": "3365", "to": "Bourse", "width": 0.9614285714285714}, {"from": "Bourse", "label": "2350", "to": "Sentier", "width": 0.6714285714285714}, {"from": "Sentier", "label": "2695", "to": "R\u00e9aumur - S\u00e9bastopol", "width": 0.77}, {"from": "R\u00e9aumur - S\u00e9bastopol", "label": "1632", "to": "Arts et M\u00e9tiers", "width": 0.4662857142857143}, {"from": "R\u00e9aumur - S\u00e9bastopol", "label": "8191", "to": "Strasbourg - Saint-Denis", "width": 2.3402857142857143}, {"from": "R\u00e9aumur - S\u00e9bastopol", "label": "8686", "to": "\u00c9tienne Marcel", "width": 2.4817142857142858}, {"from": "Arts et M\u00e9tiers", "label": "995", "to": "Temple", "width": 0.2842857142857143}, {"from": "Arts et M\u00e9tiers", "label": "18619", "to": "Rambuteau", "width": 5.319714285714285}, {"from": "Arts et M\u00e9tiers", "label": "17289", "to": "R\u00e9publique", "width": 4.9397142857142855}, {"from": "Temple", "label": "494", "to": "R\u00e9publique", "width": 0.14114285714285715}, {"from": "R\u00e9publique", "label": "9427", "to": "Parmentier", "width": 2.6934285714285715}, {"from": "R\u00e9publique", "label": "11884", "to": "Jacques Bonsergent", "width": 3.3954285714285715}, {"from": "R\u00e9publique", "label": "14047", "to": "Oberkampf", "width": 4.013428571428571}, {"from": "R\u00e9publique", "label": "9750", "to": "Strasbourg - Saint-Denis", "width": 2.7857142857142856}, {"from": "R\u00e9publique", "label": "2680", "to": "Filles du Calvaire", "width": 0.7657142857142857}, {"from": "R\u00e9publique", "label": "19088", "to": "Goncourt", "width": 5.453714285714286}, {"from": "Parmentier", "label": "7620", "to": "Rue Saint-Maur", "width": 2.177142857142857}, {"from": "Gambetta", "label": "1495", "to": "Porte de Bagnolet", "width": 0.42714285714285716}, {"from": "Gambetta", "label": "1541", "to": "Gallieni", "width": 0.4402857142857143}, {"from": "Gambetta", "label": "15619", "to": "Pelleport", "width": 4.462571428571429}, {"from": "Porte de Bagnolet", "label": "0", "to": "Gallieni", "width": 0.0}, {"from": "Pelleport", "label": "14754", "to": "Porte des Lilas", "width": 4.215428571428571}, {"from": "Porte des Lilas", "label": "8935", "to": "Porte de Clignancourt", "width": 2.552857142857143}, {"from": "Porte des Lilas", "label": "12073", "to": "T\u00e9l\u00e9graphe", "width": 3.4494285714285713}, {"from": "Porte des Lilas", "label": "8689", "to": "Mairie des Lilas", "width": 2.4825714285714287}, {"from": "Porte de Clignancourt", "label": "8188", "to": "Simplon", "width": 2.3394285714285714}, {"from": "Simplon", "label": "8533", "to": "Marcadet - Poissonniers", "width": 2.438}, {"from": "Marcadet - Poissonniers", "label": "15470", "to": "Ch\u00e2teau Rouge", "width": 4.42}, {"from": "Marcadet - Poissonniers", "label": "6249", "to": "Marx Dormoy", "width": 1.7854285714285714}, {"from": "Marcadet - Poissonniers", "label": "1991", "to": "Jules Joffrin", "width": 0.5688571428571428}, {"from": "Gare du Nord", "label": "17987", "to": "Gare de l\u0027Est", "width": 5.139142857142857}, {"from": "Gare de l\u0027Est", "label": "7442", "to": "Ch\u00e2teau d\u0027Eau", "width": 2.1262857142857143}, {"from": "Gare de l\u0027Est", "label": "11521", "to": "Jacques Bonsergent", "width": 3.291714285714286}, {"from": "Gare de l\u0027Est", "label": "7651", "to": "Ch\u00e2teau-Landon", "width": 2.186}, {"from": "Gare de l\u0027Est", "label": "11382", "to": "Poissonni\u00e8re", "width": 3.252}, {"from": "Ch\u00e2teau d\u0027Eau", "label": "8199", "to": "Strasbourg - Saint-Denis", "width": 2.3425714285714285}, {"from": "Strasbourg - Saint-Denis", "label": "10702", "to": "Bonne-Nouvelle", "width": 3.057714285714286}, {"from": "\u00c9tienne Marcel", "label": "9663", "to": "Les Halles", "width": 2.7608571428571427}, {"from": "Cit\u00e9", "label": "27849", "to": "Saint-Michel", "width": 7.956857142857143}, {"from": "Saint-Michel", "label": "26085", "to": "Od\u00e9on", "width": 7.452857142857143}, {"from": "Od\u00e9on", "label": "16711", "to": "Saint-Germain-des-Pr\u00e9s", "width": 4.774571428571429}, {"from": "Od\u00e9on", "label": "7819", "to": "Mabillon", "width": 2.234}, {"from": "Od\u00e9on", "label": "3220", "to": "Cluny - La Sorbonne", "width": 0.92}, {"from": "Saint-Germain-des-Pr\u00e9s", "label": "15205", "to": "Saint-Sulpice", "width": 4.344285714285714}, {"from": "Saint-Sulpice", "label": "14655", "to": "Saint-Placide", "width": 4.187142857142857}, {"from": "Saint-Placide", "label": "14836", "to": "Montparnasse - Bienven\u00fce", "width": 4.238857142857142}, {"from": "Montparnasse - Bienven\u00fce", "label": "17205", "to": "Vavin", "width": 4.9157142857142855}, {"from": "Montparnasse - Bienven\u00fce", "label": "11434", "to": "Pasteur", "width": 3.266857142857143}, {"from": "Montparnasse - Bienven\u00fce", "label": "1210", "to": "Edgar Quinet", "width": 0.3457142857142857}, {"from": "Montparnasse - Bienven\u00fce", "label": "1377", "to": "Notre-Dame-des-Champs", "width": 0.3934285714285714}, {"from": "Montparnasse - Bienven\u00fce", "label": "1331", "to": "Falgui\u00e8re", "width": 0.3802857142857143}, {"from": "Montparnasse - Bienven\u00fce", "label": "24169", "to": "Duroc", "width": 6.905428571428572}, {"from": "Montparnasse - Bienven\u00fce", "label": "12696", "to": "Ga\u00eet\u00e9", "width": 3.6274285714285712}, {"from": "Vavin", "label": "15305", "to": "Raspail", "width": 4.372857142857143}, {"from": "Raspail", "label": "14933", "to": "Denfert-Rochereau", "width": 4.266571428571429}, {"from": "Raspail", "label": "270", "to": "Edgar Quinet", "width": 0.07714285714285714}, {"from": "Denfert-Rochereau", "label": "17887", "to": "Mouton-Duvernet", "width": 5.110571428571428}, {"from": "Denfert-Rochereau", "label": "16753", "to": "Saint-Jacques", "width": 4.7865714285714285}, {"from": "Mouton-Duvernet", "label": "15328", "to": "Al\u00e9sia", "width": 4.379428571428571}, {"from": "Al\u00e9sia", "label": "13050", "to": "Porte d\u0027Orl\u00e9ans", "width": 3.7285714285714286}, {"from": "Porte d\u0027Orl\u00e9ans", "label": "11234", "to": "Mairie de Montrouge", "width": 3.2097142857142855}, {"from": "Mairie de Montrouge", "label": "9703", "to": "Barbara", "width": 2.7722857142857142}, {"from": "Barbara", "label": "8481", "to": "Bagneux - Lucie Aubrac", "width": 2.423142857142857}, {"from": "Bagneux - Lucie Aubrac", "label": "7579", "to": "Bobigny - Pablo Picasso", "width": 2.1654285714285715}, {"from": "Bobigny - Pablo Picasso", "label": "7391", "to": "Bobigny - Pantin - Raymond Queneau", "width": 2.1117142857142857}, {"from": "Bobigny - Pantin - Raymond Queneau", "label": "7675", "to": "\u00c9glise de Pantin", "width": 2.192857142857143}, {"from": "\u00c9glise de Pantin", "label": "8737", "to": "Hoche", "width": 2.4962857142857144}, {"from": "Hoche", "label": "10292", "to": "Porte de Pantin", "width": 2.9405714285714284}, {"from": "Porte de Pantin", "label": "12448", "to": "Ourcq", "width": 3.5565714285714285}, {"from": "Ourcq", "label": "14800", "to": "Laumi\u00e8re", "width": 4.228571428571429}, {"from": "Oberkampf", "label": "8315", "to": "Richard-Lenoir", "width": 2.375714285714286}, {"from": "Oberkampf", "label": "5584", "to": "Saint-Ambroise", "width": 1.5954285714285714}, {"from": "Richard-Lenoir", "label": "8804", "to": "Br\u00e9guet - Sabin", "width": 2.5154285714285716}, {"from": "Quai de la Rap\u00e9e", "label": "5291", "to": "Gare d\u0027Austerlitz", "width": 1.5117142857142858}, {"from": "Gare d\u0027Austerlitz", "label": "24467", "to": "Saint-Marcel", "width": 6.990571428571428}, {"from": "Gare d\u0027Austerlitz", "label": "10434", "to": "Jussieu", "width": 2.9811428571428573}, {"from": "Saint-Marcel", "label": "23141", "to": "Campo-Formio", "width": 6.611714285714286}, {"from": "Campo-Formio", "label": "22954", "to": "Place d\u0027Italie", "width": 6.558285714285715}, {"from": "Place d\u0027Italie", "label": "21762", "to": "Corvisart", "width": 6.217714285714286}, {"from": "Place d\u0027Italie", "label": "11202", "to": "Nationale", "width": 3.2005714285714286}, {"from": "Place d\u0027Italie", "label": "3974", "to": "Les Gobelins", "width": 1.1354285714285715}, {"from": "Place d\u0027Italie", "label": "17955", "to": "Tolbiac", "width": 5.13}, {"from": "Kl\u00e9ber", "label": "17835", "to": "Boissi\u00e8re", "width": 5.095714285714286}, {"from": "Boissi\u00e8re", "label": "16527", "to": "Trocad\u00e9ro", "width": 4.722}, {"from": "Trocad\u00e9ro", "label": "7849", "to": "Passy", "width": 2.2425714285714284}, {"from": "Trocad\u00e9ro", "label": "21787", "to": "Rue de la Pompe", "width": 6.224857142857143}, {"from": "Trocad\u00e9ro", "label": "11631", "to": "I\u00e9na", "width": 3.323142857142857}, {"from": "Passy", "label": "6813", "to": "Bir-Hakeim", "width": 1.9465714285714286}, {"from": "Bir-Hakeim", "label": "7130", "to": "Dupleix", "width": 2.037142857142857}, {"from": "Dupleix", "label": "8892", "to": "La Motte-Picquet - Grenelle", "width": 2.5405714285714285}, {"from": "La Motte-Picquet - Grenelle", "label": "8464", "to": "Cambronne", "width": 2.418285714285714}, {"from": "La Motte-Picquet - Grenelle", "label": "24117", "to": "Commerce", "width": 6.890571428571429}, {"from": "La Motte-Picquet - Grenelle", "label": "22104", "to": "\u00c9cole Militaire", "width": 6.315428571428572}, {"from": "La Motte-Picquet - Grenelle", "label": "20880", "to": "Avenue \u00c9mile-Zola", "width": 5.965714285714285}, {"from": "La Motte-Picquet - Grenelle", "label": "17149", "to": "S\u00e9gur", "width": 4.8997142857142855}, {"from": "Cambronne", "label": "6333", "to": "S\u00e8vres - Lecourbe", "width": 1.8094285714285714}, {"from": "S\u00e8vres - Lecourbe", "label": "5577", "to": "Pasteur", "width": 1.5934285714285714}, {"from": "Pasteur", "label": "121", "to": "Falgui\u00e8re", "width": 0.03457142857142857}, {"from": "Pasteur", "label": "12432", "to": "Volontaires", "width": 3.552}, {"from": "Saint-Jacques", "label": "17979", "to": "Glaci\u00e8re", "width": 5.136857142857143}, {"from": "Glaci\u00e8re", "label": "19637", "to": "Corvisart", "width": 5.610571428571428}, {"from": "Nationale", "label": "10126", "to": "Chevaleret", "width": 2.8931428571428572}, {"from": "Chevaleret", "label": "10437", "to": "Quai de la Gare", "width": 2.982}, {"from": "Quai de la Gare", "label": "11886", "to": "Bercy", "width": 3.396}, {"from": "Bercy", "label": "26689", "to": "Dugommier", "width": 7.6254285714285714}, {"from": "Bercy", "label": "7527", "to": "Cour Saint-\u00c9milion", "width": 2.1505714285714284}, {"from": "Dugommier", "label": "24440", "to": "Daumesnil", "width": 6.982857142857143}, {"from": "Daumesnil", "label": "9613", "to": "Bel-Air", "width": 2.7465714285714284}, {"from": "Daumesnil", "label": "922", "to": "Montgallet", "width": 0.2634285714285714}, {"from": "Daumesnil", "label": "29115", "to": "Michel Bizot", "width": 8.31857142857143}, {"from": "Bel-Air", "label": "9338", "to": "Picpus", "width": 2.668}, {"from": "La Courneuve - 8 Mai 1945", "label": "14468", "to": "Fort d\u0027Aubervilliers", "width": 4.1337142857142855}, {"from": "Fort d\u0027Aubervilliers", "label": "12309", "to": "Aubervilliers - Pantin - Quatre Chemins", "width": 3.516857142857143}, {"from": "Aubervilliers - Pantin - Quatre Chemins", "label": "10512", "to": "Porte de la Villette", "width": 3.0034285714285716}, {"from": "Porte de la Villette", "label": "9324", "to": "Corentin Cariou", "width": 2.664}, {"from": "Corentin Cariou", "label": "8869", "to": "Crim\u00e9e", "width": 2.534}, {"from": "Crim\u00e9e", "label": "9328", "to": "Riquet", "width": 2.665142857142857}, {"from": "Louis Blanc", "label": "5979", "to": "Ch\u00e2teau-Landon", "width": 1.7082857142857142}, {"from": "Louis Blanc", "label": "11680", "to": "Mairie d\u0027Ivry", "width": 3.337142857142857}, {"from": "Poissonni\u00e8re", "label": "11614", "to": "Cadet", "width": 3.3182857142857145}, {"from": "Cadet", "label": "12665", "to": "Le Peletier", "width": 3.6185714285714288}, {"from": "Le Peletier", "label": "14175", "to": "Chauss\u00e9e d\u0027Antin - La Fayette", "width": 4.05}, {"from": "Chauss\u00e9e d\u0027Antin - La Fayette", "label": "160", "to": "Richelieu - Drouot", "width": 0.045714285714285714}, {"from": "Pyramides", "label": "47130", "to": "Madeleine", "width": 13.465714285714286}, {"from": "Pont Marie", "label": "1369", "to": "Sully - Morland", "width": 0.3911428571428571}, {"from": "Sully - Morland", "label": "337", "to": "Jussieu", "width": 0.09628571428571428}, {"from": "Jussieu", "label": "4861", "to": "Place Monge", "width": 1.3888571428571428}, {"from": "Jussieu", "label": "4449", "to": "Cardinal Lemoine", "width": 1.2711428571428571}, {"from": "Place Monge", "label": "3408", "to": "Censier - Daubenton", "width": 0.9737142857142858}, {"from": "Censier - Daubenton", "label": "2961", "to": "Les Gobelins", "width": 0.846}, {"from": "Tolbiac", "label": "15332", "to": "Maison Blanche", "width": 4.380571428571429}, {"from": "Maison Blanche", "label": "12918", "to": "Le Kremlin-Bic\u00eatre", "width": 3.690857142857143}, {"from": "Le Kremlin-Bic\u00eatre", "label": "10805", "to": "Villejuif - L\u00e9o Lagrange", "width": 3.087142857142857}, {"from": "Villejuif - L\u00e9o Lagrange", "label": "9048", "to": "Villejuif - Paul Vaillant-Couturier", "width": 2.585142857142857}, {"from": "Villejuif - Paul Vaillant-Couturier", "label": "7565", "to": "Villejuif - Louis Aragon", "width": 2.1614285714285715}, {"from": "Villejuif - Louis Aragon", "label": "6496", "to": "Porte d\u0027Italie", "width": 1.856}, {"from": "Porte d\u0027Italie", "label": "6140", "to": "Porte de Choisy", "width": 1.7542857142857142}, {"from": "Porte de Choisy", "label": "6468", "to": "Porte d\u0027Ivry", "width": 1.848}, {"from": "Porte d\u0027Ivry", "label": "7589", "to": "Pierre et Marie Curie", "width": 2.168285714285714}, {"from": "Pierre et Marie Curie", "label": "9404", "to": "Mairie d\u0027Ivry", "width": 2.686857142857143}, {"from": "Bolivar", "label": "5303", "to": "Buttes Chaumont", "width": 1.5151428571428571}, {"from": "Buttes Chaumont", "label": "3995", "to": "Botzaris", "width": 1.1414285714285715}, {"from": "Botzaris", "label": "3787", "to": "Danube", "width": 1.082}, {"from": "Danube", "label": "5086", "to": "Place des F\u00eates", "width": 1.453142857142857}, {"from": "Place des F\u00eates", "label": "19694", "to": "Pr\u00e9-Saint-Gervais", "width": 5.626857142857143}, {"from": "Place des F\u00eates", "label": "8717", "to": "Jourdain", "width": 2.4905714285714287}, {"from": "Place des F\u00eates", "label": "12452", "to": "T\u00e9l\u00e9graphe", "width": 3.557714285714286}, {"from": "Pr\u00e9-Saint-Gervais", "label": "18981", "to": "Balard", "width": 5.4231428571428575}, {"from": "Balard", "label": "19060", "to": "Lourmel", "width": 5.445714285714286}, {"from": "Lourmel", "label": "19715", "to": "Boucicaut", "width": 5.632857142857143}, {"from": "Boucicaut", "label": "20777", "to": "F\u00e9lix Faure", "width": 5.936285714285714}, {"from": "F\u00e9lix Faure", "label": "22272", "to": "Commerce", "width": 6.363428571428571}, {"from": "\u00c9cole Militaire", "label": "22823", "to": "La Tour-Maubourg", "width": 6.5208571428571425}, {"from": "La Tour-Maubourg", "label": "24214", "to": "Invalides", "width": 6.918285714285714}, {"from": "Invalides", "label": "15495", "to": "Varenne", "width": 4.427142857142857}, {"from": "Richelieu - Drouot", "label": "11921", "to": "Grands Boulevards", "width": 3.406}, {"from": "Grands Boulevards", "label": "10728", "to": "Bonne-Nouvelle", "width": 3.065142857142857}, {"from": "Filles du Calvaire", "label": "1771", "to": "Saint-S\u00e9bastien - Froissart", "width": 0.506}, {"from": "Saint-S\u00e9bastien - Froissart", "label": "2524", "to": "Chemin Vert", "width": 0.7211428571428572}, {"from": "Ledru-Rollin", "label": "826", "to": "Faidherbe - Chaligny", "width": 0.236}, {"from": "Michel Bizot", "label": "26298", "to": "Porte Dor\u00e9e", "width": 7.513714285714285}, {"from": "Porte Dor\u00e9e", "label": "23553", "to": "Porte de Charenton", "width": 6.7294285714285715}, {"from": "Porte de Charenton", "label": "20811", "to": "Libert\u00e9", "width": 5.946}, {"from": "Libert\u00e9", "label": "18243", "to": "Charenton - \u00c9coles", "width": 5.212285714285715}, {"from": "Charenton - \u00c9coles", "label": "15703", "to": "\u00c9cole v\u00e9t\u00e9rinaire de Maisons-Alfort", "width": 4.486571428571429}, {"from": "\u00c9cole v\u00e9t\u00e9rinaire de Maisons-Alfort", "label": "13156", "to": "Maisons-Alfort - Stade", "width": 3.758857142857143}, {"from": "Maisons-Alfort - Stade", "label": "10725", "to": "Maisons-Alfort - Les Juilliottes", "width": 3.0642857142857145}, {"from": "Maisons-Alfort - Les Juilliottes", "label": "8494", "to": "Cr\u00e9teil - L\u0027\u00c9chat", "width": 2.426857142857143}, {"from": "Cr\u00e9teil - L\u0027\u00c9chat", "label": "6513", "to": "Cr\u00e9teil - Universit\u00e9", "width": 1.8608571428571428}, {"from": "Cr\u00e9teil - Universit\u00e9", "label": "4978", "to": "Cr\u00e9teil - Pr\u00e9fecture", "width": 1.4222857142857144}, {"from": "Cr\u00e9teil - Pr\u00e9fecture", "label": "4171", "to": "Pointe du Lac", "width": 1.1917142857142857}, {"from": "Pointe du Lac", "label": "4589", "to": "Pont de S\u00e8vres", "width": 1.3111428571428572}, {"from": "Pont de S\u00e8vres", "label": "6188", "to": "Billancourt", "width": 1.768}, {"from": "Billancourt", "label": "8669", "to": "Marcel Sembat", "width": 2.476857142857143}, {"from": "Marcel Sembat", "label": "11382", "to": "Porte de Saint-Cloud", "width": 3.252}, {"from": "Porte de Saint-Cloud", "label": "14208", "to": "Exelmans", "width": 4.059428571428572}, {"from": "Exelmans", "label": "16975", "to": "Michel-Ange - Molitor", "width": 4.85}, {"from": "Michel-Ange - Molitor", "label": "20646", "to": "Michel-Ange - Auteuil", "width": 5.898857142857143}, {"from": "Michel-Ange - Molitor", "label": "10774", "to": "Porte d\u0027Auteuil", "width": 3.0782857142857143}, {"from": "Michel-Ange - Auteuil", "label": "14228", "to": "Jasmin", "width": 4.065142857142857}, {"from": "Michel-Ange - Auteuil", "label": "11202", "to": "Chardon-Lagache", "width": 3.2005714285714286}, {"from": "Jasmin", "label": "15094", "to": "Ranelagh", "width": 4.312571428571428}, {"from": "Ranelagh", "label": "16996", "to": "La Muette", "width": 4.856}, {"from": "La Muette", "label": "19328", "to": "Rue de la Pompe", "width": 5.522285714285714}, {"from": "I\u00e9na", "label": "11847", "to": "Alma - Marceau", "width": 3.384857142857143}, {"from": "Saint-Philippe du Roule", "label": "6343", "to": "Miromesnil", "width": 1.8122857142857143}, {"from": "Miromesnil", "label": "1452", "to": "Saint-Augustin", "width": 0.41485714285714287}, {"from": "Saint-Ambroise", "label": "4222", "to": "Voltaire", "width": 1.2062857142857142}, {"from": "Voltaire", "label": "4357", "to": "Charonne", "width": 1.2448571428571429}, {"from": "Charonne", "label": "5641", "to": "Rue des Boulets", "width": 1.6117142857142857}, {"from": "Buzenval", "label": "23361", "to": "Mara\u00eechers", "width": 6.674571428571428}, {"from": "Mara\u00eechers", "label": "20746", "to": "Porte de Montreuil", "width": 5.927428571428571}, {"from": "Porte de Montreuil", "label": "18195", "to": "Robespierre", "width": 5.198571428571428}, {"from": "Robespierre", "label": "15876", "to": "Croix de Chavaux", "width": 4.536}, {"from": "Croix de Chavaux", "label": "13820", "to": "Mairie de Montreuil", "width": 3.9485714285714284}, {"from": "Mairie de Montreuil", "label": "12092", "to": "Boulogne - Pont de Saint-Cloud", "width": 3.454857142857143}, {"from": "Boulogne - Pont de Saint-Cloud", "label": "10973", "to": "Boulogne - Jean Jaur\u00e8s", "width": 3.1351428571428572}, {"from": "Boulogne - Jean Jaur\u00e8s", "label": "10507", "to": "Porte d\u0027Auteuil", "width": 3.002}, {"from": "Chardon-Lagache", "label": "11074", "to": "\u00c9glise d\u0027Auteuil", "width": 3.164}, {"from": "\u00c9glise d\u0027Auteuil", "label": "11884", "to": "Mirabeau", "width": 3.3954285714285715}, {"from": "Mirabeau", "label": "13643", "to": "Javel - Andr\u00e9 Citro\u00ebn", "width": 3.898}, {"from": "Javel - Andr\u00e9 Citro\u00ebn", "label": "15837", "to": "Charles Michels", "width": 4.524857142857143}, {"from": "Charles Michels", "label": "18420", "to": "Avenue \u00c9mile-Zola", "width": 5.2628571428571425}, {"from": "S\u00e9gur", "label": "16044", "to": "Duroc", "width": 4.584}, {"from": "Duroc", "label": "5865", "to": "Vaneau", "width": 1.6757142857142857}, {"from": "Duroc", "label": "12735", "to": "Saint-Fran\u00e7ois-Xavier", "width": 3.638571428571429}, {"from": "Vaneau", "label": "5419", "to": "S\u00e8vres - Babylone", "width": 1.5482857142857143}, {"from": "S\u00e8vres - Babylone", "label": "7378", "to": "Mabillon", "width": 2.108}, {"from": "S\u00e8vres - Babylone", "label": "3416", "to": "Rue du Bac", "width": 0.976}, {"from": "S\u00e8vres - Babylone", "label": "2910", "to": "Rennes", "width": 0.8314285714285714}, {"from": "Cluny - La Sorbonne", "label": "1662", "to": "Maubert - Mutualit\u00e9", "width": 0.47485714285714287}, {"from": "Maubert - Mutualit\u00e9", "label": "2463", "to": "Cardinal Lemoine", "width": 0.7037142857142857}, {"from": "Pyr\u00e9n\u00e9es", "label": "9577", "to": "Jourdain", "width": 2.736285714285714}, {"from": "Mairie des Lilas", "label": "5713", "to": "Mairie d\u0027Aubervilliers", "width": 1.6322857142857143}, {"from": "Mairie d\u0027Aubervilliers", "label": "3324", "to": "Aim\u00e9 C\u00e9saire", "width": 0.9497142857142857}, {"from": "Aim\u00e9 C\u00e9saire", "label": "2223", "to": "Front Populaire", "width": 0.6351428571428571}, {"from": "Front Populaire", "label": "2440", "to": "Porte de la Chapelle", "width": 0.6971428571428572}, {"from": "Porte de la Chapelle", "label": "3746", "to": "Marx Dormoy", "width": 1.0702857142857143}, {"from": "Jules Joffrin", "label": "1725", "to": "Lamarck - Caulaincourt", "width": 0.4928571428571429}, {"from": "Lamarck - Caulaincourt", "label": "2859", "to": "Abbesses", "width": 0.8168571428571428}, {"from": "Saint-Georges", "label": "5201", "to": "Notre-Dame-de-Lorette", "width": 1.486}, {"from": "Notre-Dame-de-Lorette", "label": "6607", "to": "Trinit\u00e9 - d\u0027Estienne d\u0027Orves", "width": 1.8877142857142857}, {"from": "Assembl\u00e9e nationale", "label": "5661", "to": "Solf\u00e9rino", "width": 1.6174285714285714}, {"from": "Solf\u00e9rino", "label": "3725", "to": "Rue du Bac", "width": 1.0642857142857143}, {"from": "Rennes", "label": "1179", "to": "Notre-Dame-des-Champs", "width": 0.33685714285714285}, {"from": "Volontaires", "label": "9634", "to": "Vaugirard", "width": 2.7525714285714287}, {"from": "Vaugirard", "label": "7021", "to": "Convention", "width": 2.006}, {"from": "Convention", "label": "4896", "to": "Porte de Versailles", "width": 1.3988571428571428}, {"from": "Porte de Versailles", "label": "3797", "to": "Corentin Celton", "width": 1.084857142857143}, {"from": "Corentin Celton", "label": "4070", "to": "Mairie d\u0027Issy", "width": 1.1628571428571428}, {"from": "Mairie d\u0027Issy", "label": "5409", "to": "Les Courtilles", "width": 1.5454285714285714}, {"from": "Les Courtilles", "label": "7159", "to": "Les Agnettes", "width": 2.0454285714285714}, {"from": "Les Agnettes", "label": "9173", "to": "Gabriel P\u00e9ri", "width": 2.620857142857143}, {"from": "Gabriel P\u00e9ri", "label": "11721", "to": "Mairie de Clichy", "width": 3.3488571428571428}, {"from": "Mairie de Clichy", "label": "14525", "to": "Porte de Clichy", "width": 4.15}, {"from": "Porte de Clichy", "label": "9657", "to": "Brochant", "width": 2.7591428571428573}, {"from": "Porte de Clichy", "label": "13619", "to": "Saint-Ouen", "width": 3.891142857142857}, {"from": "Porte de Clichy", "label": "40599", "to": "Pont Cardinet", "width": 11.599714285714287}, {"from": "Brochant", "label": "6596", "to": "Saint-Denis - Universit\u00e9", "width": 1.8845714285714286}, {"from": "Saint-Denis - Universit\u00e9", "label": "3735", "to": "Basilique de Saint-Denis", "width": 1.0671428571428572}, {"from": "Basilique de Saint-Denis", "label": "1348", "to": "Saint-Denis - Porte de Paris", "width": 0.3851428571428571}, {"from": "Saint-Denis - Porte de Paris", "label": "757", "to": "Carrefour Pleyel", "width": 0.21628571428571428}, {"from": "Carrefour Pleyel", "label": "2690", "to": "Mairie de Saint-Ouen", "width": 0.7685714285714286}, {"from": "Mairie de Saint-Ouen", "label": "4728", "to": "Garibaldi", "width": 1.3508571428571428}, {"from": "Mairie de Saint-Ouen", "label": "8423", "to": "Ch\u00e2tillon - Montrouge", "width": 2.4065714285714286}, {"from": "Mairie de Saint-Ouen", "label": "11421", "to": "Saint-Ouen", "width": 3.2631428571428573}, {"from": "Garibaldi", "label": "3983", "to": "Porte de Saint-Ouen", "width": 1.138}, {"from": "Porte de Saint-Ouen", "label": "5319", "to": "Guy M\u00f4quet", "width": 1.5197142857142858}, {"from": "Guy M\u00f4quet", "label": "7901", "to": "La Fourche", "width": 2.2574285714285716}, {"from": "Varenne", "label": "13630", "to": "Saint-Fran\u00e7ois-Xavier", "width": 3.894285714285714}, {"from": "Ga\u00eet\u00e9", "label": "10025", "to": "Pernety", "width": 2.8642857142857143}, {"from": "Pernety", "label": "7565", "to": "Plaisance", "width": 2.1614285714285715}, {"from": "Plaisance", "label": "5666", "to": "Porte de Vanves", "width": 1.6188571428571428}, {"from": "Porte de Vanves", "label": "4582", "to": "Malakoff - Plateau de Vanves", "width": 1.3091428571428572}, {"from": "Malakoff - Plateau de Vanves", "label": "5002", "to": "Malakoff - Rue \u00c9tienne-Dolet", "width": 1.429142857142857}, {"from": "Malakoff - Rue \u00c9tienne-Dolet", "label": "6367", "to": "Ch\u00e2tillon - Montrouge", "width": 1.8191428571428572}, {"from": "Cour Saint-\u00c9milion", "label": "4554", "to": "Biblioth\u00e8que Fran\u00e7ois-Mitterrand", "width": 1.3011428571428572}, {"from": "Biblioth\u00e8que Fran\u00e7ois-Mitterrand", "label": "1451", "to": "Olympiades", "width": 0.4145714285714286}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+                    network.on("selectNode", neighbourhoodHighlight);
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
